@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Blog.Data.Repository.Interface;
+using Blog.Data.Repository.Implementation;
 
 namespace Blog.Data
 {
@@ -19,6 +21,9 @@ namespace Blog.Data
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
+            services.AddTransient<IUserRepository, UserRepository>();
+
+
             return services;
         }
 
