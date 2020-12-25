@@ -12,6 +12,12 @@ namespace Blog.Data
 {
     public class AppDbContext: IdentityDbContext<User>
     {
+        public DbSet<StoredFileInfo> StoredFiles { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Drawing> Drawings { get; set; }
+        public DbSet<UserProject> UserProjects { get; set; }
+        public DbSet<UserTask> UserTasks { get; set; }
+
         public AppDbContext(DbContextOptions options) : base(options)
         {
             this.ChangeTracker.LazyLoadingEnabled = false;
@@ -22,6 +28,7 @@ namespace Blog.Data
             base.OnModelCreating(builder);
 
             builder.ApplyConfiguration(new BookTagConfiguration());
+            builder.ApplyConfiguration(new DrawingTagConfiguration());
         }
     }
 }

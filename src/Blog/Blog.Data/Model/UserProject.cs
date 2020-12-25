@@ -1,24 +1,21 @@
-﻿using Blog.Data.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Blog.Data.Model
 {
-    public class Book
+    public class UserProject
     {
         public int Id { get; set; }
-        public string FullName { get; set; }
-        public string Author { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
+        public bool IsFinished { get; set; }
         public bool IsDeleted { get; set; }
 
-        public IList<BookTag> BookTags { get; set; }
-
-        public Guid FileInfoId { get; set; }
-        public StoredFileInfo FileInfo { get; set; }
 
         public string UserId { get; set; }
         public User User { get; set; }
+
+        public IList<UserTask> UserTasks { get; set; }
     }
 }

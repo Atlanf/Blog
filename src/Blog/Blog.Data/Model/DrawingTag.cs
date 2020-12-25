@@ -1,0 +1,13 @@
+﻿using Blog.Data.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Blog.Data.Model
+{
+    public class DrawingTag
+    {
+        public DrawingTags Id { get; set; }
+        public string TagName { get; set; }
+    }
+}
