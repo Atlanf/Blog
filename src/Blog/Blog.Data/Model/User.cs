@@ -7,8 +7,7 @@ namespace Blog.Data.Model
 {
     public class User : IdentityUser
     {
-        public IList<Drawing> Drawings { get; set; }
-        public IList<Book> Books { get; set; }
         public IList<UserProject> UserProjects { get; set; }
+        public virtual IList<StoredFile> StoredFiles { get; set; }
     }
 }

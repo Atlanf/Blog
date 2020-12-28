@@ -12,7 +12,7 @@ namespace Blog.Data
 {
     public class AppDbContext: IdentityDbContext<User>
     {
-        public DbSet<StoredFileInfo> StoredFiles { get; set; }
+        public DbSet<StoredFile> StoredFiles { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Drawing> Drawings { get; set; }
         public DbSet<UserProject> UserProjects { get; set; }
@@ -20,12 +20,15 @@ namespace Blog.Data
 
         public AppDbContext(DbContextOptions options) : base(options)
         {
-            this.ChangeTracker.LazyLoadingEnabled = false;
+            ChangeTracker.LazyLoadingEnabled = false;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Book>().ToTable("Books");
+            builder.Entity<Drawing>().ToTable("Drawings");
 
             builder.ApplyConfiguration(new BookTagConfiguration());
             builder.ApplyConfiguration(new DrawingTagConfiguration());

@@ -22,7 +22,11 @@ namespace Blog.Data
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
-
+            services.AddTransient<IStoredFileRepository, StoredFileRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IDrawingRepository, DrawingRepository>();
+            services.AddTransient<IUserProjectRepository, UserProjectRepository>();
+            services.AddTransient<IUserTaskRepository, UserTaskRepository>();
 
             return services;
         }
