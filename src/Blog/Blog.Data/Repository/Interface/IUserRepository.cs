@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Data.Repository.Interface
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         Task<IdentityResult> AddUserAsync(User newUser, string password);
         Task<User> GetUserByNameAsync(string userName);

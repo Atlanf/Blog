@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Data.Repository.Interface
 {
-    interface IStoredFileRepository
+    public interface IStoredFileRepository
     {
         Task<StoredFile> AddFileAsync(StoredFile newFile);
         Task<StoredFile> UpdateFileAsync(StoredFile fileToUpdate);

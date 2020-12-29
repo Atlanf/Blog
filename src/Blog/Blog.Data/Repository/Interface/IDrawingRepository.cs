@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Data.Repository.Interface
 {
-    interface IDrawingRepository
+    public interface IDrawingRepository
     {
         Task<Drawing> AddDrawingAsync(Drawing newDrawing);
         Task<Drawing> UpdateDrawingAsync(Drawing drawingToUpdate);

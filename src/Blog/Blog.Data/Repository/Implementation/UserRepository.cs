@@ -10,8 +10,8 @@ namespace Blog.Data.Repository.Implementation
 {
     public class UserRepository : IUserRepository
     {
-        private readonly AppDbContext _context;
-        private readonly UserManager<User> _userManager;
+        private AppDbContext _context { get; init; }
+        private UserManager<User> _userManager { get; init; }
 
         public UserRepository(AppDbContext context, UserManager<User> userManager)
         {

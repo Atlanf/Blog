@@ -10,7 +10,7 @@ namespace Blog.Data.Repository.Implementation
 {
     public class StoredFileRepository : IStoredFileRepository
     {
-        private readonly AppDbContext _context;
+        private AppDbContext _context { get; init; }
 
         public StoredFileRepository(AppDbContext context)
         {

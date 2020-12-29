@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Data.Repository.Interface
 {
-    interface IBookRepository
+    public interface IBookRepository
     {
         Task<Book> AddBookAsync(Book newBook);
         Task<Book> UpdateBookAsync(Book bookToUpdate);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Data.Repository.Interface
 {
-    interface IUserTaskRepository
+    public interface IUserTaskRepository
     {
         Task<UserTask> AddUserTaskAsync(UserTask newUserTask);
         Task<UserTask> UpdateUserTaskAsync(UserTask userTaskToUpdate);
