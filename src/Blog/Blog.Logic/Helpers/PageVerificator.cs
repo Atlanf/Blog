@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Data.Helpers
+namespace Blog.Logic.Helpers
 {
-    public enum UserTaskPriorities
+    public static class PageVerificator
     {
-        Low = 1,
-        Medium,
-        High
+        
     }
 }

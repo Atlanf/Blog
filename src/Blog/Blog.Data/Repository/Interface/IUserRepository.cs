@@ -12,5 +12,6 @@ namespace Blog.Data.Repository.Interface
         Task<IdentityResult> AddUserAsync(User newUser, string password);
         Task<User> GetUserByNameAsync(string userName);
         Task<User> GetUserByEmailAsync(string userEmail);
+        Task<string> GetUserIdAsync(string userName, string userEmail);
     }
 }

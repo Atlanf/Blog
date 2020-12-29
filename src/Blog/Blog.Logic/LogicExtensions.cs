@@ -27,7 +27,7 @@ namespace Blog.Logic
         {
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new MapperProfile());
+                mc.AddProfiles(MapperProfiles.SetProfiles());
             });
             services.AddSingleton(mappingConfig.CreateMapper());
 

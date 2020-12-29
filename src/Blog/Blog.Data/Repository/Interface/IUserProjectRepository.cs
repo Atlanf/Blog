@@ -1,4 +1,5 @@
 ﻿using Blog.Data.Model;
+using Blog.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,6 @@ namespace Blog.Data.Repository.Interface
         Task<UserProject> AddUserProjectAsync(UserProject newUserProject);
         Task<UserProject> UpdateUserProjectAsync(UserProject userProjectToUpdate);
         Task<UserProject> DeleteUserProjectAsync(UserProject userProjectToDelete, bool softDelete);
+        Task<IList<UserProject>> GetActiveUserProjectsAsync(string userId, PageInfo page);
     }
 }

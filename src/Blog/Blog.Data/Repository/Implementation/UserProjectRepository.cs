@@ -1,8 +1,10 @@
 ﻿using Blog.Data.Model;
 using Blog.Data.Repository.Interface;
+using Blog.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,6 +48,16 @@ namespace Blog.Data.Repository.Implementation
             await _context.SaveChangesAsync();
 
             return await _context.UserProjects.FindAsync(userProjectToDelete);
+        }
+
+        public async Task<IList<UserProject>> GetActiveUserProjectsAsync(string userId, PageInfo page)
+        {
+            return await _context.UserProjects
+                .Where(proj => proj.UserId == userId && proj.IsActive && !proj.IsHidden && !proj.IsDeleted && proj.Title.Contains(page.SearchRequest))
+                .Skip((page.Page - 1) * page.PageSize)
+                .Take(page.PageSize)
+                .Include(proj => proj.UserTasks).ThenInclude(task => task.Priority)
+                .ToListAsync();
         }
     }
 }
