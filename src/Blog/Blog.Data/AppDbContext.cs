@@ -32,6 +32,7 @@ namespace Blog.Data
 
             builder.ApplyConfiguration(new BookTagConfiguration());
             builder.ApplyConfiguration(new DrawingTagConfiguration());
+            builder.ApplyConfiguration(new TaskPriorityConfiguration());
         }
     }
 }
