@@ -9,5 +9,7 @@ namespace Blog.Data.Model
     {
         public DrawingTags Id { get; set; }
         public string TagName { get; set; }
+
+        public IList<Drawing> Drawings { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Blog.Data.EntityConfigurations
         {
             var tags = UserTasksToArray();
 
-            builder.Property(b => b.PriorityId).ValueGeneratedNever();
+            builder.Property(b => b.Id).ValueGeneratedNever();
 
             builder.HasData(tags);
         }
@@ -25,7 +25,7 @@ namespace Blog.Data.EntityConfigurations
         {
             return Enum.GetValues(typeof(UserTaskPriorities))
                 .OfType<UserTaskPriorities>()
-                .Select(x => new UserTaskPriority() { PriorityId = x, PriorityValue = x.ToString() })
+                .Select(x => new UserTaskPriority() { Id = x, PriorityValue = x.ToString() })
                 .ToArray();
         }
     }

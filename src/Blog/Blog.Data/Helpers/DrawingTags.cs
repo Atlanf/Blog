@@ -6,5 +6,14 @@ namespace Blog.Data.Helpers
 {
     public enum DrawingTags
     {
+        Practice,
+        Line,
+        Landscape,
+        Character,
+        Objects,
+        Building,
+        Other,
+        Finished,
+        Dropped
     }
 }

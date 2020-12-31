@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Blog.Data
 {
-    public class AppDbContext: IdentityDbContext<User>
+    public class AppDbContext : IdentityDbContext<User>
     {
         public DbSet<StoredFile> StoredFiles { get; set; }
         public DbSet<Book> Books { get; set; }

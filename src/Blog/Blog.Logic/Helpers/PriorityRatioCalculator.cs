@@ -17,7 +17,7 @@ namespace Blog.Logic.Helpers
 
             foreach(var task in userProject.UserTasks)
             {
-                totalPriority += (int)task.Priority.PriorityId;
+                totalPriority += (int)task.Priority.Id;
             }
 
             return Math.Round(totalPriority / totalTasks, 2) * 100;

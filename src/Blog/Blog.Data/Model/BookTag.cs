@@ -9,5 +9,7 @@ namespace Blog.Data.Model
     {
         public BookTags Id { get; set; }
         public string TagName { get; set; }
+
+        public IList<Book> Books { get; set; }
     }
 }
