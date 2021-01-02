@@ -27,6 +27,7 @@ namespace Blog.Data
             services.AddTransient<IDrawingRepository, DrawingRepository>();
             services.AddTransient<IUserProjectRepository, UserProjectRepository>();
             services.AddTransient<IUserTaskRepository, UserTaskRepository>();
+            services.AddTransient<IUserPostRepository, UserPostRepository>();
 
             return services;
         }

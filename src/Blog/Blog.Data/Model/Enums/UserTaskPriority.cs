@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Data.Model
+namespace Blog.Data.Model.Enums
 {
     public class UserTaskPriority
     {

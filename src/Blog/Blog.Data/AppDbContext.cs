@@ -17,6 +17,7 @@ namespace Blog.Data
         public DbSet<Drawing> Drawings { get; set; }
         public DbSet<UserProject> UserProjects { get; set; }
         public DbSet<UserTask> UserTasks { get; set; }
+        public DbSet<UserPost> UserPosts { get; set; }
 
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -33,6 +34,7 @@ namespace Blog.Data
             builder.ApplyConfiguration(new BookTagConfiguration());
             builder.ApplyConfiguration(new DrawingTagConfiguration());
             builder.ApplyConfiguration(new TaskPriorityConfiguration());
+            builder.ApplyConfiguration(new PostTagConfiguration());
         }
     }
 }

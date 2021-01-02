@@ -1,5 +1,6 @@
 ﻿using Blog.Data.Helpers;
 using Blog.Data.Model;
+using Blog.Data.Model.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
