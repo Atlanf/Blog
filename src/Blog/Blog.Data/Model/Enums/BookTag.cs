@@ -5,11 +5,8 @@ using System.Text;
 
 namespace Blog.Data.Model.Enums
 {
-    public class BookTag
+    public class BookTag : TagModel<BookTags>
     {
-        public BookTags Id { get; set; }
-        public string TagName { get; set; }
-
         public IList<Book> Books { get; set; }
     }
 }

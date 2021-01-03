@@ -15,8 +15,8 @@ namespace Blog.Data.Model
         public DateTime DateCompleted { get; set; }
         public bool IsDeleted { get; set; }
 
-        public UserTaskPriorities PriorityId { get; set; }
-        public UserTaskPriority Priority { get; set; }
+        public UserTaskPriorityTags PriorityId { get; set; }
+        public UserTaskPriorityTag Priority { get; set; }
 
         public int ProjectId { get; set; }
         public UserProject Project { get; set; }

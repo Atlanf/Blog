@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Data.Helpers
 {
-    public enum UserTaskPriorities
+    public enum UserTaskPriorityTags
     {
         Low = 1,
         Medium,

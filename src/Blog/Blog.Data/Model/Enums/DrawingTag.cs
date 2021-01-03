@@ -3,13 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Blog.Data.Model.Tags
+namespace Blog.Data.Model.Enums
 {
-    public class DrawingTag
+    public class DrawingTag : TagModel<DrawingTags>
     {
-        public DrawingTags Id { get; set; }
-        public string TagName { get; set; }
-
         public IList<Drawing> Drawings { get; set; }
     }
 }

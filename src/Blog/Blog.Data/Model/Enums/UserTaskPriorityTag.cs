@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace Blog.Data.Model.Enums
 {
-    public class UserTaskPriority
+    public class UserTaskPriorityTag : TagModel<UserTaskPriorityTags>
     {
-        public UserTaskPriorities Id { get; set; }
-        public string PriorityValue { get; set; }
-
         public IList<UserTask> UserTasks { get; set; }
     }
 }

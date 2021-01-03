@@ -34,7 +34,7 @@ namespace Blog.Logic.Profiles
                 .ForMember(
                     proj => proj.HighPriorityTaskCount,
                     opt => opt.MapFrom(x => x.UserTasks
-                        .Where(t => t.Priority.Id == UserTaskPriorities.High)
+                        .Where(t => t.Priority.Id == UserTaskPriorityTags.High)
                         .Count()
                     )
                 )

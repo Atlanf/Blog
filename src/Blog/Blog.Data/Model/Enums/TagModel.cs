@@ -1,5 +1,4 @@
-﻿using Blog.Data.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Blog.Data.Model.Enums
 {
-    public class PostTag : TagModel<PostTags>
+    public class TagModel<T>
+        where T: Enum
     {
-        public IList<UserPost> Posts { get; set; }
+        public T Id { get; set; }
+        public string Name { get; set; }
     }
 }
