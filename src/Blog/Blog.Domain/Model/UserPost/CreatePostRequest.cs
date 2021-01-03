@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blog.Domain.Model.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace Blog.Domain.Model.UserPost
         public string Title { get; set; }
         public string Body { get; set; }
         public bool IsHidden { get; set; }
+        public IList<PostTags> SelectedTags { get; set; }
     }
 }

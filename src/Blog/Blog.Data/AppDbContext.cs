@@ -29,17 +29,12 @@ namespace Blog.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Book>().ToTable("Books");
+            builder = new EntityConfigurationApplicator().ApplyCustomConfigurations(builder);
+
             builder.Entity<BookTag>().ToTable("BookTags");
-            builder.Entity<Drawing>().ToTable("Drawings");
             builder.Entity<DrawingTag>().ToTable("DrawingTags");
             builder.Entity<PostTag>().ToTable("PostTags");
             builder.Entity<UserTaskPriorityTag>().ToTable("UserTaskPriorities");
-
-            builder.ApplyConfiguration(new TagConfiguration<BookTag, BookTags>());
-            builder.ApplyConfiguration(new TagConfiguration<DrawingTag, DrawingTags>());
-            builder.ApplyConfiguration(new TagConfiguration<PostTag, PostTags>());
-            builder.ApplyConfiguration(new TagConfiguration<UserTaskPriorityTag, UserTaskPriorityTags>());
         }
     }
 }
