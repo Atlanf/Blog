@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Blog.Data.Helpers
+namespace Blog.Domain.Model.Enum
 {
     public enum DrawingTags
     {

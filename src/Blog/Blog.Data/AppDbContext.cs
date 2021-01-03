@@ -1,7 +1,7 @@
 ﻿using Blog.Data.EntityConfigurations;
-using Blog.Data.Helpers;
 using Blog.Data.Model;
 using Blog.Data.Model.Enums;
+using Blog.Domain.Model.Enum;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -1,5 +1,5 @@
-﻿using Blog.Data.Helpers;
-using Blog.Data.Model.Enums;
+﻿using Blog.Data.Model.Enums;
+using Blog.Domain.Model.Enum;
 using System;
 using System.Collections.Generic;
 using System.Text;

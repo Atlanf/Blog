@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Data.Helpers
+namespace Blog.Domain.Model.UserPost
 {
-    public enum UserTaskPriorityTags
+    public class UserPostDetails
     {
-        Low = 1,
-        Medium,
-        High
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Data.Helpers
+namespace Blog.Domain.Model.Enum
 {
     public enum PostTags
     {

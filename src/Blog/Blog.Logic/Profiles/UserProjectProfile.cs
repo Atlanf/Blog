@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Blog.Data.Helpers;
 using Blog.Data.Model;
+using Blog.Domain.Model.Enum;
 using Blog.Domain.Model.UserProject;
 using System;
 using System.Collections.Generic;

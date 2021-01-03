@@ -1,4 +1,6 @@
 ﻿using Blog.Data.Repository.Interface;
+using Blog.Domain;
+using Blog.Domain.Model.UserPost;
 using Blog.Logic.Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,25 @@ namespace Blog.Logic.Services.Implementation
             _userPostRepository = userPostRepository;
         }
 
+        public async Task<IList<UserPostsPreview>> GetUserPostsPreviewAsync(string userId, PageInfo page)
+        {
 
+
+            return new List<UserPostsPreview>();
+        }
+
+        public async Task<IList<LastPostsPreview>> GetLastPostsPreviewAsync(PageInfo page)
+        {
+
+
+            return new List<LastPostsPreview>();
+        }
+
+        public async Task<UserPostDetails> CreatePostAsync(CreatePostRequest newPost)
+        {
+
+
+            return new UserPostDetails();
+        }
     }
 }
