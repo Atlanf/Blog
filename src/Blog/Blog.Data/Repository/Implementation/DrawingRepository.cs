@@ -10,7 +10,7 @@ namespace Blog.Data.Repository.Implementation
 {
     public class DrawingRepository : IDrawingRepository
     {
-        private AppDbContext _context { get; init; }
+        private readonly AppDbContext _context;
 
         public DrawingRepository(AppDbContext context)
         {

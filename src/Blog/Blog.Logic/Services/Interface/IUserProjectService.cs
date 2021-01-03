@@ -9,6 +9,6 @@ namespace Blog.Logic.Services.Interface
 {
     public interface IUserProjectService
     {
-        Task<IList<PreviewActiveUserProjectsDTO>> GetActiveUserProjectsAsync(string userName, PageInfo page);
+        Task<IList<ActiveUserProjectsPreview>> GetActiveUserProjectsAsync(string userName, PageInfo page);
     }
 }

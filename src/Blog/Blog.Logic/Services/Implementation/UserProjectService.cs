@@ -14,9 +14,9 @@ namespace Blog.Logic.Services.Implementation
 {
     public class UserProjectService : IUserProjectService
     {
-        private IMapper _mapper { get; init; }
-        private IUserProjectRepository _userProjectRepository { get; init; }
-        private IUserRepository _userRepository { get; init; }
+        private readonly IMapper _mapper;
+        private readonly IUserProjectRepository _userProjectRepository;
+        private readonly IUserRepository _userRepository;
 
         public UserProjectService(
             IMapper mapper,
@@ -28,10 +28,10 @@ namespace Blog.Logic.Services.Implementation
             _userRepository = userRepository;
         }
 
-        public async Task<IList<PreviewActiveUserProjectsDTO>> GetActiveUserProjectsAsync(string userName, PageInfo page)
+        public async Task<IList<ActiveUserProjectsPreview>> GetActiveUserProjectsAsync(string userName, PageInfo page)
         {
             var userId = await _userRepository.GetUserIdAsync(userName, null);
-            var result = new List<PreviewActiveUserProjectsDTO>();
+            var result = new List<ActiveUserProjectsPreview>();
 
             if (userId != "")
             {
@@ -41,7 +41,7 @@ namespace Blog.Logic.Services.Implementation
                 }
 
                 var userProjects = await _userProjectRepository.GetActiveUserProjectsAsync(userId, page);
-                result = _mapper.Map<List<PreviewActiveUserProjectsDTO>>(userProjects);
+                result = _mapper.Map<List<ActiveUserProjectsPreview>>(userProjects);
                 
                 for (int i = 0; i < result.Count; i++)
                 {

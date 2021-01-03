@@ -10,6 +10,7 @@ namespace Blog.Data.Model
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public DateTime ExpectedFinish { get; set; }
         public bool IsComplete { get; set; }
         public DateTime DateCompleted { get; set; }
         public bool IsDeleted { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Model.UserProject
 {
-    public class PreviewActiveUserProjectsDTO
+    public class ActiveUserProjectsPreview
     {
         public int UserProjectId { get; set; }
         public string ProjectTitle { get; set; }

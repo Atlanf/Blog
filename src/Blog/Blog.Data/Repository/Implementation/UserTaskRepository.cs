@@ -11,7 +11,7 @@ namespace Blog.Data.Repository.Implementation
 {
     public class UserTaskRepository : IUserTaskRepository
     {
-        private AppDbContext _context { get; init; }
+        private readonly AppDbContext _context;
 
         public UserTaskRepository(AppDbContext context)
         {

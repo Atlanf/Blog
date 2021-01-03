@@ -14,7 +14,7 @@ namespace Blog.Logic.Profiles
     {
         public UserProjectProfile()
         {
-            CreateMap<UserProject, PreviewActiveUserProjectsDTO>()
+            CreateMap<UserProject, ActiveUserProjectsPreview>()
                 .ForMember(proj => proj.UserProjectId, opt => opt.MapFrom(x => x.Id))
                 .ForMember(proj => proj.ProjectTitle, opt => opt.MapFrom(x => x.Title))
                 .ForMember(
