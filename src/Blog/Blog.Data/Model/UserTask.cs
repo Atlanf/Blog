@@ -16,7 +16,7 @@ namespace Blog.Data.Model
         public bool IsDeleted { get; set; }
 
         public UserTaskPriorityTags PriorityId { get; set; }
-        public UserTaskPriorityTag Priority { get; set; }
+        public virtual UserTaskPriorityTag Priority { get; set; }
 
         public int ProjectId { get; set; }
         public UserProject Project { get; set; }

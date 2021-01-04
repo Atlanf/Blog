@@ -11,5 +11,7 @@ namespace Blog.Data.Repository.Interface
         Task<StoredFile> AddFileAsync(StoredFile newFile);
         Task<StoredFile> UpdateFileAsync(StoredFile fileToUpdate);
         Task<StoredFile> DeleteFileAsync(StoredFile fileToDelete, bool softDelete);
+        Task<StoredFile> GetFileByUniqueNameAsync(string name);
+        Task<IList<StoredFile>> GetFilesByUniqueNameAsync(IList<string> names);
     }
 }

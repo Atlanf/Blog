@@ -13,6 +13,8 @@ namespace Blog.Data.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Book> builder)
         {
+            builder.ToTable("Books");
+
             builder.Property(b => b.IsDeleted)
                 .HasDefaultValue(false);
         }

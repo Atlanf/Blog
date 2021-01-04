@@ -23,6 +23,6 @@ namespace Blog.Data.Model
 
         public IList<StoredFile> AttachedFiles { get; set; }
 
-        public IList<PostTag> PostTags { get; set; }
+        public virtual IList<PostTag> PostTags { get; set; }
     }
 }

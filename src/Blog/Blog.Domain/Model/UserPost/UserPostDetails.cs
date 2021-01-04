@@ -8,5 +8,9 @@ namespace Blog.Domain.Model.UserPost
 {
     public class UserPostDetails
     {
+        /*
+         * Change later
+         */
+        public bool IsAdded { get; set; }
     }
 }

@@ -11,6 +11,6 @@ namespace Blog.Data.Model
         public DateTime DateCompleted { get; set; }
         public string Description { get; set; }
 
-        public IList<DrawingTag> DrawingTags { get; set; }
+        public virtual IList<DrawingTag> DrawingTags { get; set; }
     }
 }

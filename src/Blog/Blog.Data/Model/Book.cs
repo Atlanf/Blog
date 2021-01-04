@@ -11,6 +11,6 @@ namespace Blog.Data.Model
         public string Author { get; set; }
         public string Description { get; set; }
 
-        public IList<BookTag> BookTags { get; set; }
+        public virtual IList<BookTag> BookTags { get; set; }
     }
 }

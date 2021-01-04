@@ -3,6 +3,7 @@ using Blog.Data.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +48,27 @@ namespace Blog.Data.Repository.Implementation
             await _context.SaveChangesAsync();
 
             return await _context.StoredFiles.FindAsync(fileToDelete);
+        }
+
+        public async Task<StoredFile> GetFileByUniqueNameAsync(string name)
+        {
+            return await _context.StoredFiles
+                .Where(file => file.FileUniqueName == name)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<IList<StoredFile>> GetFilesByUniqueNameAsync(IList<string> names)
+        {
+            if (names.Count > 0)
+            {
+                return await _context.StoredFiles
+                    .Where(file => names.Any(uniqueName => uniqueName == file.FileUniqueName))
+                    .ToListAsync();
+            }
+            else
+            {
+                return new List<StoredFile>();
+            }
         }
     }
 }

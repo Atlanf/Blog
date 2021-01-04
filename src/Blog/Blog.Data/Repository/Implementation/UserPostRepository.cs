@@ -1,5 +1,7 @@
 ﻿using Blog.Data.Model;
+using Blog.Data.Model.Enums;
 using Blog.Data.Repository.Interface;
+using Blog.Domain.Model.Enum;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -48,6 +50,13 @@ namespace Blog.Data.Repository.Implementation
             await _context.SaveChangesAsync();
 
             return await _context.UserPosts.FindAsync(userPostToDelete);
+        }
+
+        public async Task<List<PostTag>> GetPostTagsAsync(IList<PostTags> postTags)
+        {
+            return await _context.PostTags
+                .Where(tag => postTags.Any(id => id == tag.Id))
+                .ToListAsync();
         }
     }
 }

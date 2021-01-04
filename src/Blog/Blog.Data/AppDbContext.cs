@@ -19,6 +19,9 @@ namespace Blog.Data
         public DbSet<UserProject> UserProjects { get; set; }
         public DbSet<UserTask> UserTasks { get; set; }
         public DbSet<UserPost> UserPosts { get; set; }
+        public DbSet<PostTag> PostTags { get; set; }
+        public DbSet<DrawingTag> DrawingTags { get; set; }
+        public DbSet<BookTag> BookTags { get; set; }
 
         public AppDbContext(DbContextOptions options) : base(options)
         {
