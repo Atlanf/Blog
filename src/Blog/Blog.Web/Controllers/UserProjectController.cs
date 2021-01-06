@@ -11,7 +11,7 @@ namespace Blog.Web.Controllers
     [ApiController]
     public class UserProjectController : Controller
     {
-        private IUserProjectService _userProjectService { get; init; }
+        private readonly IUserProjectService _userProjectService;
         public UserProjectController(IUserProjectService userProjectService)
         {
             _userProjectService = userProjectService;

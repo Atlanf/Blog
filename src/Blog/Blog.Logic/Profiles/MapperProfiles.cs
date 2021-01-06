@@ -15,7 +15,8 @@ namespace Blog.Logic.Profiles
             var profiles = new List<Profile>()
             {
                 new UserProjectProfile(),
-                new UserPostProfile()
+                new UserPostProfile(),
+                new UserProfile()
             };
 
             return profiles;

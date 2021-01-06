@@ -59,7 +59,7 @@ namespace Blog.Data.Repository.Implementation
 
         public async Task<IList<StoredFile>> GetFilesByUniqueNameAsync(IList<string> names)
         {
-            if (names.Count > 0)
+            if (names != null && names.Count > 0)
             {
                 return await _context.StoredFiles
                     .Where(file => names.Any(uniqueName => uniqueName == file.FileUniqueName))

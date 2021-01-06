@@ -10,7 +10,11 @@ namespace Blog.Domain.Model.Enum
         Art,
         Fantasy,
         Mystery,
+        Network,
         SciFi,
-        Science
+        Science,
+        Software,
+        Web,
+        Other
     }
 }

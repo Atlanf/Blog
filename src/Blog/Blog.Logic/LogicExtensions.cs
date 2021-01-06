@@ -37,6 +37,8 @@ namespace Blog.Logic
         private static IServiceCollection AddServiceImplementations(this IServiceCollection services)
         {
             services.AddTransient<IUserProjectService, UserProjectService>();
+            services.AddTransient<IUserPostService, UserPostService>();
+            services.AddTransient<IUserService, UserService>();
 
             return services;
         }
