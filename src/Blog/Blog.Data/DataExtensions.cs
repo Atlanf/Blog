@@ -1,11 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Identity.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Blog.Data.Repository.Interface;
 using Blog.Data.Repository.Implementation;
+using Blog.Data.Model;
+using Microsoft.AspNetCore.Identity;
 
 namespace Blog.Data
 {
@@ -15,6 +18,7 @@ namespace Blog.Data
         {
             services.AddDbConnection(config);
             services.AddRepositories();
+            services.AddIdentityCore<User>().AddRoles<IdentityRole>();
 
             return services;
         }
