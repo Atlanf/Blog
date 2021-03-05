@@ -16,9 +16,10 @@ namespace Blog.Data
     {
         public static IServiceCollection AddDataServices(this IServiceCollection services, IConfiguration config)
         {
-            services.AddDbConnection(config);
             services.AddRepositories();
-            services.AddIdentityCore<User>().AddRoles<IdentityRole>();
+            services.AddDbConnection(config);
+            services.AddIdentityCore<User>().AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
 
             return services;
         }

@@ -1,3 +1,4 @@
+using Blog.Data;
 using Blog.Logic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,8 +29,6 @@ namespace Blog.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLogicServices(Configuration);
-
             services.AddLogging();
             services.AddControllers();
 
@@ -37,6 +36,8 @@ namespace Blog.Web
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blog.Web", Version = "v1" });
             });
+
+            services.AddLogicServices(Configuration);
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
             {
@@ -52,6 +53,8 @@ namespace Blog.Web
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blog.Web v1"));
+
+                DbInitializer.Seed(app.ApplicationServices);
             }
 
             app.UseHttpsRedirection();
@@ -60,6 +63,7 @@ namespace Blog.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
