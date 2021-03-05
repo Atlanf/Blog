@@ -18,6 +18,10 @@ namespace Blog.Logic.Helpers
             {
                 page.PageSize = _maxPageSize;
             }
+            if (page.Page < 1)
+            {
+                page.Page = 1;
+            }
             return page;
         }
     }

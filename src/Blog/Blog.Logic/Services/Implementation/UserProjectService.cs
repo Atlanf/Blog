@@ -36,10 +36,7 @@ namespace Blog.Logic.Services.Implementation
 
             if (userId != "")
             {
-                if (page.Page <= 0)
-                {
-                    page.Page = 1;
-                }
+                page = PageVerificator.AdjustPage(page);
 
                 var userProjects = await _userProjectRepository.GetActiveUserProjectsAsync(userId, page);
                 result = _mapper.Map<List<ActiveUserProjectsPreview>>(userProjects);
