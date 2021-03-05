@@ -3,6 +3,7 @@ using Blog.Data.Repository.Interface;
 using Blog.Domain;
 using Blog.Domain.Model.Page;
 using Blog.Domain.Model.UserProject;
+using Blog.Domain.Model.UserProject.Responses;
 using Blog.Logic.Helpers;
 using Blog.Logic.Services.Interface;
 using System;
@@ -48,6 +49,11 @@ namespace Blog.Logic.Services.Implementation
             }
 
             return result.OrderByDescending(r => r.PriorityRatio).ToList();
+        }
+
+        public async Task<UserProjectDetails> CreateProjectAsync()
+        {
+            return null;
         }
     }
 }

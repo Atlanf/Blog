@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Domain.Model.UserProject
+namespace Blog.Domain.Model.UserProject.Responses
 {
     public class ActiveUserProjectsPreview
     {

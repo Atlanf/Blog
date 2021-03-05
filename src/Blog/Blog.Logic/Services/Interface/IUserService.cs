@@ -1,4 +1,6 @@
 ﻿using Blog.Domain.Model.User;
+using Blog.Domain.Model.User.Requests;
+using Blog.Domain.Model.User.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;

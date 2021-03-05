@@ -1,4 +1,6 @@
 ﻿using Blog.Domain.Model.User;
+using Blog.Domain.Model.User.Requests;
+using Blog.Domain.Model.User.Responses;
 using Blog.Logic.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

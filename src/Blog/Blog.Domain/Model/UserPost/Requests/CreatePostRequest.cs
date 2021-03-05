@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Domain.Model.UserPost
+namespace Blog.Domain.Model.UserPost.Requests
 {
     public class CreatePostRequest
     {

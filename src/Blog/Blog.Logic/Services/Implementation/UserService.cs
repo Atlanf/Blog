@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Blog.Domain.Model.User;
 using Blog.Data.Model;
+using Blog.Domain.Model.User.Requests;
+using Blog.Domain.Model.User.Responses;
 
 namespace Blog.Logic.Services.Implementation
 {
