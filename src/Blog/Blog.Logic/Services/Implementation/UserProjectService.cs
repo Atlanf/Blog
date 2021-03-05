@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Blog.Data.Repository.Interface;
 using Blog.Domain;
+using Blog.Domain.Model.Page;
 using Blog.Domain.Model.UserProject;
 using Blog.Logic.Helpers;
 using Blog.Logic.Services.Interface;

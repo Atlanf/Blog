@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Blog.Domain;
+using Blog.Domain.Model.Page;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace Blog.Logic.Helpers
 {
-    public static class PageVerificator
+    public class PageVerificator
     {
-        
+        private static readonly int _maxPageSize = 20;
+
+        public static PageInfo AdjustPage(PageInfo page)
+        {
+            if (page.PageSize >= _maxPageSize)
+            {
+                page.PageSize = _maxPageSize;
+            }
+            return page;
+        }
     }
 }

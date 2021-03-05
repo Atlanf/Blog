@@ -1,4 +1,5 @@
 ﻿using Blog.Domain;
+using Blog.Domain.Model.Page;
 using Blog.Domain.Model.UserPost;
 using System;
 using System.Collections.Generic;

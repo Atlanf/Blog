@@ -1,6 +1,7 @@
 ﻿using Blog.Data.Model;
 using Blog.Data.Repository.Interface;
 using Blog.Domain;
+using Blog.Domain.Model.Page;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

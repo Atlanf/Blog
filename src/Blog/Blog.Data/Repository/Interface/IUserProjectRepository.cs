@@ -1,5 +1,6 @@
 ﻿using Blog.Data.Model;
 using Blog.Domain;
+using Blog.Domain.Model.Page;
 using System;
 using System.Collections.Generic;
 using System.Text;

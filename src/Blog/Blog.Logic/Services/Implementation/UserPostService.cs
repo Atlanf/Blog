@@ -2,6 +2,7 @@
 using Blog.Data.Model;
 using Blog.Data.Repository.Interface;
 using Blog.Domain;
+using Blog.Domain.Model.Page;
 using Blog.Domain.Model.UserPost;
 using Blog.Logic.Services.Interface;
 using System;

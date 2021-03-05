@@ -17,6 +17,7 @@ namespace Blog.Web.Controllers
             _userProjectService = userProjectService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
