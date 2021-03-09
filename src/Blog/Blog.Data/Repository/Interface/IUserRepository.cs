@@ -13,5 +13,6 @@ namespace Blog.Data.Repository.Interface
         Task<User> GetUserByNameAsync(string userName);
         Task<User> GetUserByEmailAsync(string userEmail);
         Task<string> GetUserIdAsync(string userName, string userEmail);
+        Task<bool> IsUserExists(string userName);
     }
 }

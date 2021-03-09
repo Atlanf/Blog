@@ -15,6 +15,6 @@ namespace Blog.Logic.Services.Interface
     {
         Task<IList<UserPostsPreview>> GetUserPostsPreviewAsync(string userId, PageInfo page);
         Task<IList<LastPostsPreview>> GetLastPostsPreviewAsync(PageInfo page);
-        Task<UserPostDetails> CreatePostAsync(CreatePostRequest newPost);
+        Task<UserPostDetailsResponse> CreatePostAsync(CreatePostRequest newPost);
     }
 }

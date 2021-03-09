@@ -2,6 +2,8 @@
 using Blog.Data.Model;
 using Blog.Domain.Model.Enum;
 using Blog.Domain.Model.UserProject;
+using Blog.Domain.Model.UserProject.Requests;
+using Blog.Domain.Model.UserProject.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,7 @@ namespace Blog.Logic.Profiles
     {
         public UserProjectProfile()
         {
-            CreateMap<UserProject, ActiveUserProjectsPreview>()
+            CreateMap<UserProject, ActiveUserProjectsPreviewResponse>()
                 .ForMember(proj => proj.UserProjectId, opt => opt.MapFrom(x => x.Id))
                 .ForMember(proj => proj.ProjectTitle, opt => opt.MapFrom(x => x.Title))
                 .ForMember(
@@ -39,6 +41,9 @@ namespace Blog.Logic.Profiles
                     )
                 )
                 .ForMember(proj => proj.PriorityRatio, opt => opt.Ignore());
+
+            CreateMap<CreateUserProjectRequest, UserProject>();
+            CreateMap<UserProject, UserProjectDetailsResponse>();
         }
     }
 }

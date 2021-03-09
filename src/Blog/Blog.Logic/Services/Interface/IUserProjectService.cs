@@ -1,6 +1,7 @@
 ﻿using Blog.Domain;
 using Blog.Domain.Model.Page;
 using Blog.Domain.Model.UserProject;
+using Blog.Domain.Model.UserProject.Requests;
 using Blog.Domain.Model.UserProject.Responses;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Blog.Logic.Services.Interface
 {
     public interface IUserProjectService
     {
-        Task<IList<ActiveUserProjectsPreview>> GetActiveUserProjectsAsync(string userName, PageInfo page);
+        Task<IList<ActiveUserProjectsPreviewResponse>> GetActiveUserProjectsAsync(string userName, PageInfo page);
+        Task<UserProjectDetailsResponse> CreateProjectAsync(CreateUserProjectRequest projectToCreate);
     }
 }

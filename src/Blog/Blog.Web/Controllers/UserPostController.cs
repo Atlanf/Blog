@@ -22,7 +22,7 @@ namespace Blog.Web.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<UserPostDetails>> CreatePostAsync(CreatePostRequest newPost)
+        public async Task<ActionResult<UserPostDetailsResponse>> CreatePostAsync(CreatePostRequest newPost)
         {
             var result = await _userPostService.CreatePostAsync(newPost);
 

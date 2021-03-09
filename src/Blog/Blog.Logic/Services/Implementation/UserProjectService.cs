@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
+using Blog.Data.Model;
 using Blog.Data.Repository.Interface;
 using Blog.Domain;
 using Blog.Domain.Model.Page;
 using Blog.Domain.Model.UserProject;
+using Blog.Domain.Model.UserProject.Requests;
 using Blog.Domain.Model.UserProject.Responses;
 using Blog.Logic.Helpers;
 using Blog.Logic.Services.Interface;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,28 +22,31 @@ namespace Blog.Logic.Services.Implementation
         private readonly IMapper _mapper;
         private readonly IUserProjectRepository _userProjectRepository;
         private readonly IUserRepository _userRepository;
+        private readonly ILogger _logger;
 
         public UserProjectService(
             IMapper mapper,
             IUserProjectRepository userProjectRepository,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            ILogger logger)
         {
             _mapper = mapper;
             _userProjectRepository = userProjectRepository;
             _userRepository = userRepository;
+            _logger = logger;
         }
 
-        public async Task<IList<ActiveUserProjectsPreview>> GetActiveUserProjectsAsync(string userName, PageInfo page)
+        public async Task<IList<ActiveUserProjectsPreviewResponse>> GetActiveUserProjectsAsync(string userName, PageInfo page)
         {
             var userId = await _userRepository.GetUserIdAsync(userName, null);
-            var result = new List<ActiveUserProjectsPreview>();
+            var result = new List<ActiveUserProjectsPreviewResponse>();
 
             if (userId != "")
             {
                 page = PageVerificator.AdjustPage(page);
 
                 var userProjects = await _userProjectRepository.GetActiveUserProjectsAsync(userId, page);
-                result = _mapper.Map<List<ActiveUserProjectsPreview>>(userProjects);
+                result = _mapper.Map<List<ActiveUserProjectsPreviewResponse>>(userProjects);
                 
                 for (int i = 0; i < result.Count; i++)
                 {
@@ -51,9 +57,38 @@ namespace Blog.Logic.Services.Implementation
             return result.OrderByDescending(r => r.PriorityRatio).ToList();
         }
 
-        public async Task<UserProjectDetails> CreateProjectAsync()
+        public async Task<UserProjectDetailsResponse> CreateProjectAsync(CreateUserProjectRequest projectToCreate)
         {
-            return null;
+            if (await _userRepository.IsUserExists(projectToCreate.UserName))
+            {
+                var projectToAdd = _mapper.Map<UserProject>(projectToCreate);
+                projectToAdd.User = await _userRepository.GetUserByNameAsync(projectToCreate.UserName);
+
+                var result = await _userProjectRepository.AddUserProjectAsync(projectToAdd);
+
+                if (result != null)
+                {
+                    return _mapper.Map<UserProjectDetailsResponse>(result);
+                }
+                else
+                {
+                    _logger.LogWarning("CreateProjectAsync result is NULL. ", projectToCreate);
+                    return new UserProjectDetailsResponse()
+                    {
+                        IsError = true,
+                        AdditionalInfo = "Something happened on creating new project."
+                    };
+                }
+            }
+            else
+            {
+                _logger.LogWarning("CreateProjectAsync user does not exist. ", projectToCreate.UserName);
+                return new UserProjectDetailsResponse()
+                {
+                    IsError = true,
+                    AdditionalInfo = "This user does not exist."
+                };
+            }
         }
     }
 }

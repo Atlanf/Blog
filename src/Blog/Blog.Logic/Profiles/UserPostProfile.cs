@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Blog.Data.Model;
 using Blog.Domain.Model.UserPost;
+using Blog.Domain.Model.UserPost.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;

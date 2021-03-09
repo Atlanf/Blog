@@ -49,5 +49,10 @@ namespace Blog.Data.Repository.Implementation
 
             return userId;
         }
+
+        public async Task<bool> IsUserExists(string userName)
+        {
+            return await _userManager.FindByNameAsync(userName) != null ? true : false;
+        }
     }
 }

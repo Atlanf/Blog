@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Model.UserPost.Responses
 {
-    public class UserPostDetails
+    public class UserPostDetailsResponse
     {
         /*
          * Change later

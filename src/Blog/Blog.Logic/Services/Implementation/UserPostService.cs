@@ -48,7 +48,7 @@ namespace Blog.Logic.Services.Implementation
             return new List<LastPostsPreview>();
         }
 
-        public async Task<UserPostDetails> CreatePostAsync(CreatePostRequest newPost)
+        public async Task<UserPostDetailsResponse> CreatePostAsync(CreatePostRequest newPost)
         {
             var post = _mapper.Map<UserPost>(newPost);
             post.User = await _userRepository.GetUserByNameAsync(newPost.UserName);
@@ -60,11 +60,11 @@ namespace Blog.Logic.Services.Implementation
             /* Change later */
             if (result != null)
             {
-                return new UserPostDetails() { IsAdded = true };
+                return new UserPostDetailsResponse() { IsAdded = true };
             }
             else
             {
-                return new UserPostDetails() { IsAdded = false };
+                return new UserPostDetailsResponse() { IsAdded = false };
             }
         }
     }
