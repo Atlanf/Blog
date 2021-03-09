@@ -34,17 +34,25 @@ namespace Blog.Data.Repository.Implementation
             return await _userManager.FindByEmailAsync(userEmail);
         }
 
-        public async Task<string> GetUserIdAsync(string userName, string userEmail)
+        public async Task<string> GetUserIdByNameAsync(string name)
         {
             var userId = "";
 
-            if (userName != null)
+            if (name != null)
             {
-                userId = (await _userManager.FindByNameAsync(userName)).Id;
+                userId = (await _userManager.FindByNameAsync(name)).Id;
             }
-            else if (userEmail != null)
+
+            return userId;
+        }
+
+        public async Task<string> GetUserIdByEmailAsync(string email)
+        {
+            var userId = "";
+
+            if (email != null)
             {
-                userId = (await _userManager.FindByEmailAsync(userEmail)).Id;
+                userId = (await _userManager.FindByEmailAsync(email)).Id;
             }
 
             return userId;

@@ -16,8 +16,5 @@ namespace Blog.Domain.Model.UserProject.Requests
 
         [MaxLength(255, ErrorMessage = "Description is too long (maximum length is 255 charactes).")]
         public string Description { get; set; }
-
-        [Required]
-        public string UserName { get; set; }
     }
 }

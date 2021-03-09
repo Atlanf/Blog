@@ -13,6 +13,6 @@ namespace Blog.Logic.Services.Interface
     public interface IUserProjectService
     {
         Task<IList<ActiveUserProjectsPreviewResponse>> GetActiveUserProjectsAsync(string userName, PageInfo page);
-        Task<UserProjectDetailsResponse> CreateProjectAsync(CreateUserProjectRequest projectToCreate);
+        Task<UserProjectDetailsResponse> CreateProjectAsync(CreateUserProjectRequest projectToCreate, string userName);
     }
 }

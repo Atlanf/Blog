@@ -19,6 +19,8 @@ namespace Blog.Data.EntityConfigurations
                 .HasDefaultValue(true);
             builder.Property(b => b.IsHidden)
                 .HasDefaultValue(false);
+            builder.Property(b => b.DateCreated)
+                .HasDefaultValueSql("getdate()");
         }
     }
 }

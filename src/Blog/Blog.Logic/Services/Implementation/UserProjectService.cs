@@ -8,12 +8,12 @@ using Blog.Domain.Model.UserProject.Requests;
 using Blog.Domain.Model.UserProject.Responses;
 using Blog.Logic.Helpers;
 using Blog.Logic.Services.Interface;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace Blog.Logic.Services.Implementation
 {
@@ -38,7 +38,7 @@ namespace Blog.Logic.Services.Implementation
 
         public async Task<IList<ActiveUserProjectsPreviewResponse>> GetActiveUserProjectsAsync(string userName, PageInfo page)
         {
-            var userId = await _userRepository.GetUserIdAsync(userName, null);
+            var userId = await _userRepository.GetUserIdByNameAsync(userName);
             var result = new List<ActiveUserProjectsPreviewResponse>();
 
             if (userId != "")
@@ -57,12 +57,14 @@ namespace Blog.Logic.Services.Implementation
             return result.OrderByDescending(r => r.PriorityRatio).ToList();
         }
 
-        public async Task<UserProjectDetailsResponse> CreateProjectAsync(CreateUserProjectRequest projectToCreate)
+        public async Task<UserProjectDetailsResponse> CreateProjectAsync(CreateUserProjectRequest projectToCreate,
+            string userName)
         {
-            if (await _userRepository.IsUserExists(projectToCreate.UserName))
+            var user = await _userRepository.GetUserIdByNameAsync(userName);
+            if (!_userProjectRepository.IsUserProjectExists(projectToCreate.Title, projectToCreate.Description, user))
             {
                 var projectToAdd = _mapper.Map<UserProject>(projectToCreate);
-                projectToAdd.User = await _userRepository.GetUserByNameAsync(projectToCreate.UserName);
+                projectToAdd.User = await _userRepository.GetUserByNameAsync(userName);
 
                 var result = await _userProjectRepository.AddUserProjectAsync(projectToAdd);
 
@@ -72,7 +74,7 @@ namespace Blog.Logic.Services.Implementation
                 }
                 else
                 {
-                    _logger.LogWarning("CreateProjectAsync result is NULL. ", projectToCreate);
+                    _logger.Warning("CreateProjectAsync result is NULL. ", projectToCreate, projectToAdd.User);
                     return new UserProjectDetailsResponse()
                     {
                         IsError = true,
@@ -82,11 +84,11 @@ namespace Blog.Logic.Services.Implementation
             }
             else
             {
-                _logger.LogWarning("CreateProjectAsync user does not exist. ", projectToCreate.UserName);
+                _logger.Warning("CreateProjectAsync project with these credentials for this user already exists ", userName);
                 return new UserProjectDetailsResponse()
                 {
                     IsError = true,
-                    AdditionalInfo = "This user does not exist."
+                    AdditionalInfo = "You already have project with such title and description."
                 };
             }
         }

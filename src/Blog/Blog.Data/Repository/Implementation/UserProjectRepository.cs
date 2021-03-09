@@ -60,5 +60,12 @@ namespace Blog.Data.Repository.Implementation
                 .Include(proj => proj.UserTasks).ThenInclude(task => task.Priority)
                 .ToListAsync();
         }
+
+        public bool IsUserProjectExists(string title, string description, string userId)
+        {
+            var result = _context.UserProjects
+                .First(proj => proj.Title == title && proj.Description == description && proj.UserId == userId && !proj.IsDeleted);
+            return result != null ? true : false;
+        }
     }
 }
