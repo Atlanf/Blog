@@ -85,7 +85,7 @@ namespace Blog.Logic.Services.Implementation
             }
             else
             {
-                _logger.LogWarning("CreateProjectAsync project with these credentials for this user already exists ", projectToCreate, userName);
+                _logger.LogInformation("CreateProjectAsync project with these credentials for this user already exists. Project: {@ProjectToCreate}; User: {@UserName}", projectToCreate, userName);
                 return new UserProjectDetailsResponse()
                 {
                     IsError = true,
