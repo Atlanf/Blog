@@ -8,12 +8,12 @@ using Blog.Domain.Model.UserProject.Requests;
 using Blog.Domain.Model.UserProject.Responses;
 using Blog.Logic.Helpers;
 using Blog.Logic.Services.Interface;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Serilog;
 
 namespace Blog.Logic.Services.Implementation
 {
@@ -22,13 +22,14 @@ namespace Blog.Logic.Services.Implementation
         private readonly IMapper _mapper;
         private readonly IUserProjectRepository _userProjectRepository;
         private readonly IUserRepository _userRepository;
-        private readonly ILogger _logger;
+        private readonly ILogger<UserProjectService> _logger;
 
         public UserProjectService(
             IMapper mapper,
             IUserProjectRepository userProjectRepository,
             IUserRepository userRepository,
-            ILogger logger)
+            ILogger<UserProjectService> logger
+            )
         {
             _mapper = mapper;
             _userProjectRepository = userProjectRepository;
@@ -61,7 +62,7 @@ namespace Blog.Logic.Services.Implementation
             string userName)
         {
             var user = await _userRepository.GetUserIdByNameAsync(userName);
-            if (!_userProjectRepository.IsUserProjectExists(projectToCreate.Title, projectToCreate.Description, user))
+            if (!(await _userProjectRepository.IsUserProjectExists(projectToCreate.Title, user)))
             {
                 var projectToAdd = _mapper.Map<UserProject>(projectToCreate);
                 projectToAdd.User = await _userRepository.GetUserByNameAsync(userName);
@@ -74,7 +75,7 @@ namespace Blog.Logic.Services.Implementation
                 }
                 else
                 {
-                    _logger.Warning("CreateProjectAsync result is NULL. ", projectToCreate, projectToAdd.User);
+                    _logger.LogWarning("CreateProjectAsync result is NULL. ", projectToCreate, projectToAdd.User);
                     return new UserProjectDetailsResponse()
                     {
                         IsError = true,
@@ -84,7 +85,7 @@ namespace Blog.Logic.Services.Implementation
             }
             else
             {
-                _logger.Warning("CreateProjectAsync project with these credentials for this user already exists ", userName);
+                _logger.LogWarning("CreateProjectAsync project with these credentials for this user already exists ", projectToCreate, userName);
                 return new UserProjectDetailsResponse()
                 {
                     IsError = true,

@@ -1,7 +1,7 @@
 ﻿using Blog.Domain.Model.UserProject.Requests;
 using Blog.Logic.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +14,8 @@ namespace Blog.Web.Controllers
     public class UserProjectController : Controller
     {
         private readonly IUserProjectService _userProjectService;
-        private readonly ILogger _logger;
-        public UserProjectController(IUserProjectService userProjectService, ILogger logger)
+        private readonly ILogger<UserProjectController> _logger;
+        public UserProjectController(IUserProjectService userProjectService, ILogger<UserProjectController> logger)
         {
             _userProjectService = userProjectService;
             _logger = logger;
@@ -30,7 +30,12 @@ namespace Blog.Web.Controllers
         [HttpPost("/create")]
         public async Task<IActionResult> CreateNewProjectAsync(CreateUserProjectRequest project)
         {
-            return Ok();
+            var result = await _userProjectService.CreateProjectAsync(project, "admin");
+            if (result.IsError)
+            {
+                return BadRequest();
+            }
+            return Ok(result);
         }
     }
 }

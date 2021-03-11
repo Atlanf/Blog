@@ -25,7 +25,8 @@ namespace Blog.Data.Repository.Implementation
             await _context.UserProjects.AddAsync(newUserProject);
             await _context.SaveChangesAsync();
 
-            return await _context.UserProjects.FindAsync(newUserProject);
+            return await _context.UserProjects
+                .FirstOrDefaultAsync(proj => proj.Title == newUserProject.Title && proj.UserId == newUserProject.User.Id && !proj.IsDeleted);
         }
         public async Task<UserProject> UpdateUserProjectAsync(UserProject userProjectToUpdate)
         {
@@ -61,11 +62,10 @@ namespace Blog.Data.Repository.Implementation
                 .ToListAsync();
         }
 
-        public bool IsUserProjectExists(string title, string description, string userId)
+        public async Task<bool> IsUserProjectExists(string title, string userId)
         {
-            var result = _context.UserProjects
-                .First(proj => proj.Title == title && proj.Description == description && proj.UserId == userId && !proj.IsDeleted);
-            return result != null ? true : false;
+            return await _context.UserProjects
+                .AnyAsync(proj => proj.Title == title && proj.UserId == userId && !proj.IsDeleted);
         }
     }
 }

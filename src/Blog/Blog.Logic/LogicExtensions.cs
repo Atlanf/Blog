@@ -13,34 +13,28 @@ namespace Blog.Logic
 {
     public static class LogicExtensions
     {
-        public static IServiceCollection AddLogicServices(this IServiceCollection services, IConfiguration config)
+        public static void AddLogicServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddDataServices(config);
 
             services.AddServiceImplementations();
             services.AddMapper();
-
-            return services;
         }
 
-        private static IServiceCollection AddMapper(this IServiceCollection services)
+        private static void AddMapper(this IServiceCollection services)
         {
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfiles(MapperProfiles.SetProfiles());
             });
             services.AddSingleton(mappingConfig.CreateMapper());
-
-            return services;
         }
 
-        private static IServiceCollection AddServiceImplementations(this IServiceCollection services)
+        private static void AddServiceImplementations(this IServiceCollection services)
         {
             services.AddTransient<IUserProjectService, UserProjectService>();
             services.AddTransient<IUserPostService, UserPostService>();
             services.AddTransient<IUserService, UserService>();
-
-            return services;
         }
     }
 }
