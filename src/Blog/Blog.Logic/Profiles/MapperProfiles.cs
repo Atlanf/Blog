@@ -16,7 +16,8 @@ namespace Blog.Logic.Profiles
             {
                 new UserProjectProfile(),
                 new UserPostProfile(),
-                new UserProfile()
+                new UserProfile(),
+                new UserTaskProfile()
             };
 
             return profiles;

@@ -31,7 +31,7 @@ namespace Blog.Web.Controllers
         public async Task<IActionResult> CreateNewProjectAsync(CreateUserProjectRequest project)
         {
             var result = await _userProjectService.CreateProjectAsync(project, "admin");
-            if (result.IsError)
+            if (result == null)
             {
                 return BadRequest();
             }

@@ -28,8 +28,7 @@ namespace Blog.Logic.Services.Implementation
             IMapper mapper,
             IUserProjectRepository userProjectRepository,
             IUserRepository userRepository,
-            ILogger<UserProjectService> logger
-            )
+            ILogger<UserProjectService> logger)
         {
             _mapper = mapper;
             _userProjectRepository = userProjectRepository;
@@ -76,21 +75,13 @@ namespace Blog.Logic.Services.Implementation
                 else
                 {
                     _logger.LogWarning("CreateProjectAsync result is NULL. ", projectToCreate, projectToAdd.User);
-                    return new UserProjectDetailsResponse()
-                    {
-                        IsError = true,
-                        AdditionalInfo = "Something happened on creating new project."
-                    };
+                    return null;
                 }
             }
             else
             {
                 _logger.LogInformation("CreateProjectAsync project with these credentials for this user already exists. Project: {@ProjectToCreate}; User: {@UserName}", projectToCreate, userName);
-                return new UserProjectDetailsResponse()
-                {
-                    IsError = true,
-                    AdditionalInfo = "You already have project with such title and description."
-                };
+                return null;
             }
         }
     }

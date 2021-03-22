@@ -13,8 +13,12 @@ namespace Blog.Data.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<UserTask> builder)
         {
+            builder.Property(b => b.IsComplete)
+                .HasDefaultValue(false);
             builder.Property(b => b.IsDeleted)
                 .HasDefaultValue(false);
+            builder.Property(b => b.Position)
+                .HasDefaultValue(-1);
         }
     }
 }

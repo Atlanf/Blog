@@ -35,6 +35,7 @@ namespace Blog.Logic
             services.AddTransient<IUserProjectService, UserProjectService>();
             services.AddTransient<IUserPostService, UserPostService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserTaskService, UserTaskService>();
         }
     }
 }
