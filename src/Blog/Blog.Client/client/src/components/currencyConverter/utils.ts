@@ -35,7 +35,6 @@ export function convertCurrencies(
         return val.currAbbr === basisCurrency
     })[0].valueToRub;
     
-    result.push({currId: 0, currAbbr: "BYN", currValue: Number((value * rate).toFixed(4))});
     rateList.rates.forEach((val) => {
         if (val.currAbbr === basisCurrency) {
             result.push({
