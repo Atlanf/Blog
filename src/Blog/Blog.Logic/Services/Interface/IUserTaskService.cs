@@ -1,4 +1,5 @@
-﻿using Blog.Domain.Model.UserTask.Requests;
+﻿using Blog.Data.Model;
+using Blog.Domain.Model.UserTask.Requests;
 using Blog.Domain.Model.UserTask.Responses;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace Blog.Logic.Services.Interface
 {
     public interface IUserTaskService
     {
-        Task<UserTaskListResponse> CreateUserTaskAsync(CreateUserTaskRequest userTask);
+        Task<List<UserTaskResponse>> CreateUserTaskAsync(CreateUserTaskRequest userTask);
     }
 }

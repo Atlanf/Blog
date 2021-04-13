@@ -11,5 +11,6 @@ namespace Blog.Data.Repository.Interface
         Task<UserTask> AddUserTaskAsync(UserTask newUserTask);
         Task<UserTask> UpdateUserTaskAsync(UserTask userTaskToUpdate);
         Task<UserTask> DeleteUserTaskAsync(UserTask taskToDelete, bool softDelete);
+        Task<List<UserTask>> GetAllProjectTasksAsync(int projectId);
     }
 }

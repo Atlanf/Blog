@@ -67,5 +67,11 @@ namespace Blog.Data.Repository.Implementation
             return await _context.UserProjects
                 .AnyAsync(proj => proj.Title == title && proj.UserId == userId && !proj.IsDeleted);
         }
+
+        public async Task<UserProject> GetUserProjectByIdAsync(int projectId)
+        {
+            return await _context.UserProjects
+                .FirstOrDefaultAsync(proj => proj.Id == projectId && !proj.IsDeleted);
+        }
     }
 }

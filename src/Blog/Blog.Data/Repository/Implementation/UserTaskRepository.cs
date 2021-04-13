@@ -49,5 +49,13 @@ namespace Blog.Data.Repository.Implementation
 
             return await _context.UserTasks.FindAsync(taskToDelete);
         }
+
+        public async Task<List<UserTask>> GetAllProjectTasksAsync(int projectId)
+        {
+            return await _context.UserTasks
+                .Where(t => t.ProjectId == projectId && !t.IsComplete)
+                .OrderByDescending(t => t.Priority.Id)
+                .OrderBy(t => t.Position).ToListAsync();
+        }
     }
 }

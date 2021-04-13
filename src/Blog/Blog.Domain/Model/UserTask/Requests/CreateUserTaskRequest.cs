@@ -16,7 +16,7 @@ namespace Blog.Domain.Model.UserTask.Requests
         public DateTime ExpectedFinish { get; set; }
 
         [Required]
-        public string ProjectTitle { get; set; }
-        public UserTaskPriorityTags PriorityTag { get; set; }
+        public int ProjectId { get; set; }
+        public string PriorityTag { get; set; }
     }
 }
