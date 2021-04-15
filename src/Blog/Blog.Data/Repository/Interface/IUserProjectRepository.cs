@@ -15,6 +15,7 @@ namespace Blog.Data.Repository.Interface
         Task<UserProject> DeleteUserProjectAsync(UserProject userProjectToDelete, bool softDelete);
         Task<IList<UserProject>> GetActiveUserProjectsAsync(string userId, PageInfo page);
         Task<UserProject> GetUserProjectByIdAsync(int projectId);
-        Task<bool> IsUserProjectExists(string title, string userId);
+        Task<bool> IsUserProjectExistsAsync(string title, string userId);
+        Task<bool> UserIsOwnerAsync(int projectId, string userId);
     }
 }

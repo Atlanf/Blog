@@ -62,7 +62,7 @@ namespace Blog.Data.Repository.Implementation
                 .ToListAsync();
         }
 
-        public async Task<bool> IsUserProjectExists(string title, string userId)
+        public async Task<bool> IsUserProjectExistsAsync(string title, string userId)
         {
             return await _context.UserProjects
                 .AnyAsync(proj => proj.Title == title && proj.UserId == userId && !proj.IsDeleted);
@@ -72,6 +72,12 @@ namespace Blog.Data.Repository.Implementation
         {
             return await _context.UserProjects
                 .FirstOrDefaultAsync(proj => proj.Id == projectId && !proj.IsDeleted);
+        }
+
+        public async Task<bool> UserIsOwnerAsync(int projectId, string userId)
+        {
+            return await _context.UserProjects
+                .AnyAsync(proj => proj.Id == projectId && proj.UserId == userId && !proj.IsDeleted);
         }
     }
 }

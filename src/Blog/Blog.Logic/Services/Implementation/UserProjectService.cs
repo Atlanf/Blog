@@ -61,7 +61,7 @@ namespace Blog.Logic.Services.Implementation
             string userName)
         {
             var user = await _userRepository.GetUserIdByNameAsync(userName);
-            if (!(await _userProjectRepository.IsUserProjectExists(projectToCreate.Title, user)))
+            if (!(await _userProjectRepository.IsUserProjectExistsAsync(projectToCreate.Title, user)))
             {
                 var projectToAdd = _mapper.Map<UserProject>(projectToCreate);
                 projectToAdd.User = await _userRepository.GetUserByNameAsync(userName);

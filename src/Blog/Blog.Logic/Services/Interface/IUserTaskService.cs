@@ -12,5 +12,6 @@ namespace Blog.Logic.Services.Interface
     public interface IUserTaskService
     {
         Task<List<UserTaskResponse>> CreateUserTaskAsync(CreateUserTaskRequest userTask);
+        Task<List<UserTaskResponse>> GetActiveProjectTasks(int projectId, string userName);
     }
 }

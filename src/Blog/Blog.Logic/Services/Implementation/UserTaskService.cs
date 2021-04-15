@@ -57,9 +57,33 @@ namespace Blog.Logic.Services.Implementation
             }
         }
 
+        public async Task<List<UserTaskResponse>> GetActiveProjectTasks(int projectId, string userName)
+        {
+            var user = await _userRepository.GetUserByNameAsync(userName);
+            var owner = await _userProjectRepository.UserIsOwnerAsync(projectId, user.Id);
+
+            if (owner)
+            {
+                return _mapper.Map<List<UserTaskResponse>>(await GetProjectTasks(projectId));
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         private async Task<List<UserTask>> GetProjectTasks(int projectId)
         {
-            return await _userTaskRepository.GetAllProjectTasksAsync(projectId);
+            var result = await _userTaskRepository.GetAllProjectTasksAsync(projectId);
+
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                return new List<UserTask>();
+            }
         }
     }
 }
