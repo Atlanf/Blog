@@ -1,4 +1,6 @@
-﻿using Blog.Logic.Services.Implementation;
+﻿using Blog.Domain.Model.UserTask.Responses;
+using Blog.Logic.Services.Implementation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,6 +20,25 @@ namespace Blog.Web.Controllers
             _userTaskService = userTaskService;
         }
 
+        //[Authorize]
+        [HttpGet("{projectId}")]
+        public async Task<ActionResult<List<UserTaskResponse>>> GetUserTasks(int projectId)
+        {
+            /* Temp value */
+            string userName = "admin";
 
+            var result = await _userTaskService.GetActiveProjectTasksAsync(projectId, userName);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return Problem(
+                title: "Unauthorized access",
+                detail: "You can not see details unless it is your project.",
+                statusCode: 403
+            );
+        }
     }
 }

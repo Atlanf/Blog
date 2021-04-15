@@ -48,7 +48,7 @@ namespace Blog.Logic.Services.Implementation
 
             if (operationResult != null)
             {
-                return _mapper.Map<List<UserTaskResponse>>(await GetProjectTasks(userTask.ProjectId));
+                return _mapper.Map<List<UserTaskResponse>>(await GetProjectTasksAsync(userTask.ProjectId));
             }
             else
             {
@@ -57,14 +57,14 @@ namespace Blog.Logic.Services.Implementation
             }
         }
 
-        public async Task<List<UserTaskResponse>> GetActiveProjectTasks(int projectId, string userName)
+        public async Task<List<UserTaskResponse>> GetActiveProjectTasksAsync(int projectId, string userName)
         {
             var user = await _userRepository.GetUserByNameAsync(userName);
-            var owner = await _userProjectRepository.UserIsOwnerAsync(projectId, user.Id);
+            var isOwner = await _userProjectRepository.UserIsOwnerAsync(projectId, user.Id);
 
-            if (owner)
+            if (isOwner)
             {
-                return _mapper.Map<List<UserTaskResponse>>(await GetProjectTasks(projectId));
+                return _mapper.Map<List<UserTaskResponse>>(await GetProjectTasksAsync(projectId));
             }
             else
             {
@@ -72,7 +72,7 @@ namespace Blog.Logic.Services.Implementation
             }
         }
 
-        private async Task<List<UserTask>> GetProjectTasks(int projectId)
+        private async Task<List<UserTask>> GetProjectTasksAsync(int projectId)
         {
             var result = await _userTaskRepository.GetAllProjectTasksAsync(projectId);
 
