@@ -35,7 +35,7 @@ namespace Blog.Web.Controllers
             }
 
             return Problem(
-                title: "Unauthorized access",
+                title: "Access forbidden.",
                 detail: "You can not see details unless it is your project.",
                 statusCode: 403
             );

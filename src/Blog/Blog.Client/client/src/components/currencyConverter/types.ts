@@ -9,7 +9,7 @@ export interface ICurrencyRateList {
     dateUpdated: string
 }
 
-export interface ICurrencies {
+export interface ICurrency {
     currId: number;
     currAbbr: string;
 }
@@ -23,8 +23,8 @@ export interface IResponseCurrencyRate {
     Date: Date
 }
 
-export interface IConvertedCurrencies {
+export interface IConvertedCurrency {
     currId: number,
     currAbbr: string,
-    currValue: number
+    currValue: string
 }

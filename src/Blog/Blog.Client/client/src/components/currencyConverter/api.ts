@@ -1,11 +1,11 @@
 import axios from "axios";
 import { insertByn, parseDate } from "./utils";
 
-import { IResponseCurrencyRate, ICurrencyRateList, ICurrencies, ICurrencyRate } from "./types";
+import { IResponseCurrencyRate, ICurrencyRateList, ICurrency, ICurrencyRate } from "./types";
 
 export async function GetCurrencyRates(
     url: string, 
-    requiredCurrencies: ICurrencies[]
+    requiredCurrencies: ICurrency[]
 ): Promise<ICurrencyRateList> {
     let result: ICurrencyRateList = {rates: [], dateUpdated: ""};
     result = insertByn(result);

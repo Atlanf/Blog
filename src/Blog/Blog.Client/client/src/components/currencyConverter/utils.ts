@@ -1,8 +1,8 @@
 import { GetCurrencyRates as getCurrencyRates } from "./api";
-import { IConvertedCurrencies, ICurrencies, ICurrencyRateList } from "./types";
+import { IConvertedCurrency, ICurrency, ICurrencyRateList } from "./types";
 
 export async function loadCurrencyRates(
-    requiredCurrencies: ICurrencies[],
+    requiredCurrencies: ICurrency[],
     requestUrl: string,
     localStorageRatesKey: string
 ): Promise<ICurrencyRateList> {
@@ -27,10 +27,10 @@ export async function loadCurrencyRates(
 
 export function convertCurrencies(
     rateList: ICurrencyRateList,
-    value: number,
+    value: string,
     basisCurrency: string
-): IConvertedCurrencies[] {
-    let result : IConvertedCurrencies[] = [];
+): IConvertedCurrency[] {
+    let result : IConvertedCurrency[] = [];
     let rate = rateList.rates.filter((val) => {
         return val.currAbbr === basisCurrency
     })[0].valueToRub;
@@ -47,7 +47,7 @@ export function convertCurrencies(
             result.push({
                 currId: val.currId,
                 currAbbr: val.currAbbr,
-                currValue: Number((value * rate / val.valueToRub).toFixed(4)) 
+                currValue: ((Number(value) * rate / val.valueToRub).toFixed(4)).toString() 
             });
         }
     });
@@ -70,4 +70,21 @@ export function insertByn(rates: ICurrencyRateList): ICurrencyRateList {
     });
 
     return rates; 
+}
+
+export function inputIsValid(input: string): boolean {
+    if (input.match(/[^0-9.]/)) {
+        return false;
+    }
+    
+    if (input.startsWith(".")) {
+        return false;
+    }
+
+    let entries = input.match(/\./g);
+    if (entries != null && entries.length > 1) {
+        return false;
+    }
+
+    return true;
 }
