@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { insertByn, parseDate } from "./utils";
 
 import { IResponseCurrencyRate, ICurrencyRateList, ICurrency, ICurrencyRate } from "./types";
@@ -25,6 +25,17 @@ export async function GetCurrencyRates(
                     result.rates.push(curr);
                 })
                 result.dateUpdated = parseDate(new Date());
+            })
+            .catch((error: AxiosError) => {
+                if (error.response) {
+                    console.log("Error: request was made and response was recieved.");
+                }
+                else if (error.request) {
+                    console.log("Error: request was made but no response was recieved.")
+                }
+                else {
+                    console.log("Error: ", error.message);
+                }
             })
     
     return result;
