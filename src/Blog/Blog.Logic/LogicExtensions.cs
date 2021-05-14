@@ -17,6 +17,7 @@ namespace Blog.Logic
         {
             services.AddDataServices(config);
 
+            services.AddJwtAuthenticationService(config);
             services.AddServiceImplementations();
             services.AddMapper();
         }
@@ -36,6 +37,11 @@ namespace Blog.Logic
             services.AddTransient<IUserPostService, UserPostService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserTaskService, UserTaskService>();
+        }
+
+        private static void AddJwtAuthenticationService(this IServiceCollection services, IConfiguration config)
+        {
+
         }
     }
 }

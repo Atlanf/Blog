@@ -12,5 +12,6 @@ namespace Blog.Logic.Services.Interface
     public interface IUserService
     {
         Task<SignupResponse> SignupUser(SignupRequest request);
+        Task<SigninResponse> SigninUser(SigninRequest request);
     }
 }

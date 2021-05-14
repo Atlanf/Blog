@@ -42,5 +42,10 @@ namespace Blog.Logic.Services.Implementation
                 };
             }
         }
+
+        public async Task<SigninResponse> SigninUser(SigninRequest request)
+        {
+            return new SigninResponse();
+        }
     }
 }
