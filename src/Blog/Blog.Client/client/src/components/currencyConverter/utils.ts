@@ -1,5 +1,5 @@
 import { GetCurrencyRates as getCurrencyRates } from "./api";
-import { IConvertedCurrency, ICurrency, ICurrencyRateList } from "./types";
+import { IConvertedCurrency, ICurrency, ICurrencyRateList } from "../../shared/interfaces/currencyConverter.interface";
 
 export async function loadCurrencyRates(
     requiredCurrencies: ICurrency[],

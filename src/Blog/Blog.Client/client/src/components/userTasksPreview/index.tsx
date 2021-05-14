@@ -1,5 +1,5 @@
 import React from "react";
 
-export const UserTasks: React.FC = () => {
+export const UserTasksPreview: React.FC = () => {
     return <div></div>
 }

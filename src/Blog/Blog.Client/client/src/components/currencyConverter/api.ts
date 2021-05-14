@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { insertByn, parseDate } from "./utils";
 
-import { IResponseCurrencyRate, ICurrencyRateList, ICurrency, ICurrencyRate } from "./types";
+import { IResponseCurrencyRate, ICurrencyRateList, ICurrency, ICurrencyRate } from "../../shared/interfaces/currencyConverter.interface";
 
 export async function GetCurrencyRates(
     url: string, 
