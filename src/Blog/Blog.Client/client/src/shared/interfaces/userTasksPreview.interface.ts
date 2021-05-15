@@ -1,3 +1,3 @@
-export interface IUserTask {
+export interface IUserTaskPreview {
 
 }

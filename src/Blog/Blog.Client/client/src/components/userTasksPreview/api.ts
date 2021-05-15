@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import { IUserTask } from "../../shared/interfaces/userTasks.interface";
+import { IUserTaskPreview } from "../../shared/interfaces/userTasksPreview.interface";
 
-export async function GetUserTasks(): Promise<IUserTask[]> {
+export async function GetUserTasksPreview(): Promise<IUserTaskPreview[]> {
     return [];
 }

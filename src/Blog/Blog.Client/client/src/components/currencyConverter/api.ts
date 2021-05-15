@@ -2,15 +2,16 @@ import axios, { AxiosError } from "axios";
 import { insertByn, parseDate } from "./utils";
 
 import { IResponseCurrencyRate, ICurrencyRateList, ICurrency, ICurrencyRate } from "../../shared/interfaces/currencyConverter.interface";
+import { nbrbRatesAddress } from "../../shared/apiAdresses";
+//"https://www.nbrb.by/api/exrates/rates?periodicity=0"
 
 export async function GetCurrencyRates(
-    url: string, 
     requiredCurrencies: ICurrency[]
 ): Promise<ICurrencyRateList> {
     let result: ICurrencyRateList = {rates: [], dateUpdated: ""};
     result = insertByn(result);
 
-    await axios.get<IResponseCurrencyRate[]>(url)
+    await axios.get<IResponseCurrencyRate[]>(nbrbRatesAddress)
             .then(response => {
                 let rates: IResponseCurrencyRate[] = [];
                 rates = response.data.filter(o =>

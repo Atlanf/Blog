@@ -3,7 +3,6 @@ import { IConvertedCurrency, ICurrency, ICurrencyRateList } from "../../shared/i
 
 export async function loadCurrencyRates(
     requiredCurrencies: ICurrency[],
-    requestUrl: string,
     localStorageRatesKey: string
 ): Promise<ICurrencyRateList> {
     var localStorageValue: string | null = localStorage.getItem(localStorageRatesKey);
@@ -13,12 +12,12 @@ export async function loadCurrencyRates(
         rates = JSON.parse(localStorageValue);
         if (rates.dateUpdated !== parseDate(new Date())) {
             localStorage.removeItem(localStorageRatesKey);
-            let currencies: string = JSON.stringify(await getCurrencyRates(requestUrl, requiredCurrencies));
+            let currencies: string = JSON.stringify(await getCurrencyRates(requiredCurrencies));
             localStorage.setItem(localStorageRatesKey, currencies);
         }
     }
     else {
-        let currencies: string = JSON.stringify(await getCurrencyRates(requestUrl, requiredCurrencies)); 
+        let currencies: string = JSON.stringify(await getCurrencyRates(requiredCurrencies)); 
         localStorage.setItem(localStorageRatesKey, currencies);
     }
 

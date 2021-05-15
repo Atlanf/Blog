@@ -1,5 +1,5 @@
 import React from "react";
-import { ICurrencyRateList, ICurrency, IConvertedCurrency } from "./types";
+import { ICurrencyRateList, ICurrency, IConvertedCurrency } from "../../shared/interfaces/currencyConverter.interface";
 import { convertCurrencies, loadCurrencyRates, inputIsValid } from "./utils";
 
 interface IProps {
@@ -16,7 +16,6 @@ const requiredCurrencies: ICurrency[] = [
     {currId: 298, currAbbr: "RUB"}
 ];
 
-const requestUrl: string = "https://www.nbrb.by/api/exrates/rates?periodicity=0";
 const localStorageRatesKey: string = "currencyRates";
 const inputLength: number = 12;
 
@@ -48,7 +47,7 @@ export default class CurrencyConverter extends React.Component<IProps, IState>{
 
     async componentDidMount() {
         this.setState({
-            currencyRates: await loadCurrencyRates(requiredCurrencies, requestUrl, localStorageRatesKey)
+            currencyRates: await loadCurrencyRates(requiredCurrencies, localStorageRatesKey)
         });
     }
     
