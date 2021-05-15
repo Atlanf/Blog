@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 **/.idea
+
+/src/Blog/Blog.Client/client/src/shared/apiAddresses.ts
