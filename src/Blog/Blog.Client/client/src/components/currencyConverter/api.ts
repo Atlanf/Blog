@@ -1,14 +1,15 @@
 import axios, { AxiosError } from "axios";
 import { insertByn, parseDate } from "./utils";
+import ParseAxiosError from "../../actions/errorParser";
 
 import { IResponseCurrencyRate, ICurrencyRateList, ICurrency, ICurrencyRate } from "../../shared/interfaces/currencyConverter.interface";
-import { nbrbRatesAddress } from "../../shared/apiAdresses";
+import { nbrbRatesAddress } from "../../shared/apiAddresses";
 //"https://www.nbrb.by/api/exrates/rates?periodicity=0"
 
 export async function GetCurrencyRates(
     requiredCurrencies: ICurrency[]
 ): Promise<ICurrencyRateList> {
-    let result: ICurrencyRateList = {rates: [], dateUpdated: ""};
+    let result: ICurrencyRateList = {rates: [], dateUpdated: "", error: false};
     result = insertByn(result);
 
     await axios.get<IResponseCurrencyRate[]>(nbrbRatesAddress)
@@ -28,15 +29,8 @@ export async function GetCurrencyRates(
                 result.dateUpdated = parseDate(new Date());
             })
             .catch((error: AxiosError) => {
-                if (error.response) {
-                    console.log("Error: request was made and response was recieved.");
-                }
-                else if (error.request) {
-                    console.log("Error: request was made but no response was recieved.")
-                }
-                else {
-                    console.log("Error: ", error.message);
-                }
+                ParseAxiosError(error, "GET", nbrbRatesAddress);
+                result.error = true;
             })
     
     return result;

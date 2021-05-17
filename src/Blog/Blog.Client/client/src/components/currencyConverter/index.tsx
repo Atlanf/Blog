@@ -23,7 +23,7 @@ export default class CurrencyConverter extends React.Component<IProps, IState>{
     constructor(props: IProps) {
         super(props);
         this.state = {
-            currencyRates: {rates: [], dateUpdated: ""},
+            currencyRates: {rates: [], dateUpdated: "", error: false},
             currencyValues: [
                 {currId: 0, currAbbr: "BYN", currValue: "1"},
                 {currId: 145, currAbbr: "USD", currValue: "0"},
@@ -52,6 +52,21 @@ export default class CurrencyConverter extends React.Component<IProps, IState>{
     }
     
     render() {
+        let errorDescription = () => {
+            return <div></div>
+        };
+        if (this.state.currencyRates.error) {
+            errorDescription = () => {
+                return (
+                    <div>
+                        <p>
+                            Error occured on loading currency rates. 
+                            Previously loaded values will be used.
+                        </p>
+                    </div>
+                )
+            }
+        }
         let inputs = this.state.currencyValues.map((val) => {
             return (
                 <div>
@@ -63,7 +78,12 @@ export default class CurrencyConverter extends React.Component<IProps, IState>{
 
         return (
             <div>
-                {inputs}
+                <div>
+                    {inputs}
+                </div>
+                <div>
+                    {errorDescription}
+                </div>
             </div>
         )
     }

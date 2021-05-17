@@ -21,6 +21,8 @@ namespace Blog.Data.EntityConfigurations
                 .HasDefaultValue(false);
             builder.Property(b => b.DateCreated)
                 .HasDefaultValueSql("getdate()");
+            builder.Property(b => b.Title)
+                .HasMaxLength(50);
         }
     }
 }

@@ -6,7 +6,8 @@ export interface ICurrencyRate {
 
 export interface ICurrencyRateList {
     rates: ICurrencyRate[],
-    dateUpdated: string
+    dateUpdated: string,
+    error: boolean
 }
 
 export interface ICurrency {

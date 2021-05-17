@@ -65,7 +65,7 @@ namespace Blog.Data.Repository.Implementation
         public async Task<bool> IsUserProjectExistsAsync(string title, string userId)
         {
             return await _context.UserProjects
-                .AnyAsync(proj => proj.Title == title && proj.UserId == userId && !proj.IsDeleted);
+                .AnyAsync(proj => proj.Title.ToLower() == title.ToLower() && proj.UserId == userId && !proj.IsDeleted);
         }
 
         public async Task<UserProject> GetUserProjectByIdAsync(int projectId)

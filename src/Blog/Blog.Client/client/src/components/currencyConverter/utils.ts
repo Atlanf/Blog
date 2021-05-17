@@ -11,9 +11,12 @@ export async function loadCurrencyRates(
     if (localStorageValue != null) {
         rates = JSON.parse(localStorageValue);
         if (rates.dateUpdated !== parseDate(new Date())) {
-            localStorage.removeItem(localStorageRatesKey);
-            let currencies: string = JSON.stringify(await getCurrencyRates(requiredCurrencies));
-            localStorage.setItem(localStorageRatesKey, currencies);
+            let rates: ICurrencyRateList = await getCurrencyRates(requiredCurrencies);
+            if (!rates.error) {
+                let currencies: string = JSON.stringify(rates);
+                localStorage.removeItem(localStorageRatesKey);
+                localStorage.setItem(localStorageRatesKey, currencies);
+            }
         }
     }
     else {
