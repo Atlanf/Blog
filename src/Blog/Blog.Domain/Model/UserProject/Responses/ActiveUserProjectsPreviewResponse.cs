@@ -8,7 +8,7 @@ namespace Blog.Domain.Model.UserProject.Responses
 {
     public class ActiveUserProjectsPreviewResponse
     {
-        public int UserProjectId { get; set; }
+        public int Id { get; set; }
         public string ProjectTitle { get; set; }
         public double PriorityRatio { get; set; }
         public int HighPriorityTaskCount { get; set; }

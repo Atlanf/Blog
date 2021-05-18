@@ -17,7 +17,7 @@ namespace Blog.Logic.Profiles
         public UserProjectProfile()
         {
             CreateMap<UserProject, ActiveUserProjectsPreviewResponse>()
-                .ForMember(proj => proj.UserProjectId, opt => opt.MapFrom(x => x.Id))
+                .ForMember(proj => proj.Id, opt => opt.MapFrom(x => x.Id))
                 .ForMember(proj => proj.ProjectTitle, opt => opt.MapFrom(x => x.Title))
                 .ForMember(
                     proj => proj.UnfinishedTaskCount,

@@ -7,6 +7,7 @@ using Blog.Domain.Model.UserProject;
 using Blog.Domain.Model.UserProject.Requests;
 using Blog.Domain.Model.UserProject.Responses;
 using Blog.Logic.Helpers;
+using Blog.Logic.Helpers.ServiceHelpers;
 using Blog.Logic.Services.Interface;
 using Microsoft.Extensions.Logging;
 using System;
@@ -36,27 +37,22 @@ namespace Blog.Logic.Services.Implementation
             _logger = logger;
         }
 
-        public async Task<PaginatedList<ActiveUserProjectsPreviewResponse>> GetActiveUserProjectsAsync(string userName, PageInfo page)
+        public async Task<PaginatedList<ActiveUserProjectsPreviewResponse>> GetActiveUserProjectsAsync(
+            string userName,
+            PageInfo page)
         {
-            var userId = await _userRepository.GetUserIdByNameAsync(userName);
-            var activeProjects = new List<ActiveUserProjectsPreviewResponse>();
             var result = new PaginatedList<ActiveUserProjectsPreviewResponse>();
 
+            var userId = await _userRepository.GetUserIdByNameAsync(userName);
+            
             if (userId != "")
             {
                 page = PageVerificator.AdjustPage(page);
 
                 var userProjects = await _userProjectRepository.GetActiveUserProjectsAsync(userId, page);
                 var projectsCount = await _userProjectRepository.GetActiveUserProjectsCountAsync(userId);
-                activeProjects = _mapper.Map<List<ActiveUserProjectsPreviewResponse>>(userProjects);
-                
-                for (int i = 0; i < activeProjects.Count; i++)
-                {
-                    activeProjects[i].PriorityRatio = PriorityRatioCalculator.SetPriorityRatio(userProjects[i]);
-                }
 
-                result = PaginationHelper<ActiveUserProjectsPreviewResponse>.SetPaginatedList(activeProjects, page, projectsCount);
-                result.Items.OrderByDescending(r => r.PriorityRatio).ToList();
+                result = UserProjectHelper.AssignActiveUserProjectValues(userProjects, page, projectsCount, _mapper);
             }
             else
             {
@@ -66,7 +62,8 @@ namespace Blog.Logic.Services.Implementation
             return result;
         }
 
-        public async Task<UserProjectDetailsResponse> CreateProjectAsync(CreateUserProjectRequest projectToCreate,
+        public async Task<UserProjectDetailsResponse> CreateProjectAsync(
+            CreateUserProjectRequest projectToCreate,
             string userName)
         {
             var user = await _userRepository.GetUserIdByNameAsync(userName);
