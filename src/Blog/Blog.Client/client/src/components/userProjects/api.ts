@@ -1,10 +1,14 @@
 import axios from "axios";
+import { serverAddress } from "../../shared/apiAddresses"
 
-import { UserProjectPreview } from "../../shared/interfaces/userProjects.interface"
+import { IUserProjectPreview } from "../../shared/interfaces/userProjects.interface"
 
-export async function GetUserProjects(
+export async function getUserProjects(
     userName: string
-): Promise<UserProjectPreview[]> {
+): Promise<IUserProjectPreview[]> {
+    let result: IUserProjectPreview[] = [];
 
-    return [];
+    axios.get(serverAddress + "/UserProject/" + userName + "/all")
+
+    return result;
 }

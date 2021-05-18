@@ -1,4 +1,5 @@
-﻿using Blog.Domain.Model.UserProject.Requests;
+﻿using Blog.Domain.Model.Page;
+using Blog.Domain.Model.UserProject.Requests;
 using Blog.Logic.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -32,10 +33,12 @@ namespace Blog.Web.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/all")]
-        public async Task<IActionResult> GetUserProjectsAsync()
+        [HttpGet("{userName}/all")]
+        public async Task<IActionResult> GetUserProjectsAsync(string userName, [FromQuery]PageInfo page)
         {
-            return Ok();
+            var result = await _userProjectService.GetActiveUserProjectsAsync(userName, page);
+
+            return Ok(result);
         }
     }
 }

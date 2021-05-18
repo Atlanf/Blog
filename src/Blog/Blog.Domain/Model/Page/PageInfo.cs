@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,13 @@ namespace Blog.Domain.Model.Page
 {
     public class PageInfo
     {
+        [FromQuery(Name = "page")]
         public int Page { get; set; } = 1;
-        public int PageSize { get; set; }
-        public string SearchRequest { get; set; }
-        public string Filter { get; set; }
+        [FromQuery(Name = "size")]
+        public int PageSize { get; set; } = 5;
+        [FromQuery(Name = "search")]
+        public string SearchRequest { get; set; } = "";
+        [FromQuery(Name = "filter")]
+        public string Filter { get; set; } = "";
     }
 }

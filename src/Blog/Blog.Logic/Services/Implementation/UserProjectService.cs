@@ -36,25 +36,34 @@ namespace Blog.Logic.Services.Implementation
             _logger = logger;
         }
 
-        public async Task<IList<ActiveUserProjectsPreviewResponse>> GetActiveUserProjectsAsync(string userName, PageInfo page)
+        public async Task<PaginatedList<ActiveUserProjectsPreviewResponse>> GetActiveUserProjectsAsync(string userName, PageInfo page)
         {
             var userId = await _userRepository.GetUserIdByNameAsync(userName);
-            var result = new List<ActiveUserProjectsPreviewResponse>();
+            var activeProjects = new List<ActiveUserProjectsPreviewResponse>();
+            var result = new PaginatedList<ActiveUserProjectsPreviewResponse>();
 
             if (userId != "")
             {
                 page = PageVerificator.AdjustPage(page);
 
                 var userProjects = await _userProjectRepository.GetActiveUserProjectsAsync(userId, page);
-                result = _mapper.Map<List<ActiveUserProjectsPreviewResponse>>(userProjects);
+                var projectsCount = await _userProjectRepository.GetActiveUserProjectsCountAsync(userId);
+                activeProjects = _mapper.Map<List<ActiveUserProjectsPreviewResponse>>(userProjects);
                 
-                for (int i = 0; i < result.Count; i++)
+                for (int i = 0; i < activeProjects.Count; i++)
                 {
-                    result[i].PriorityRatio = PriorityRatioCalculator.SetPriorityRatio(userProjects[i]);
+                    activeProjects[i].PriorityRatio = PriorityRatioCalculator.SetPriorityRatio(userProjects[i]);
                 }
+
+                result = PaginationHelper<ActiveUserProjectsPreviewResponse>.SetPaginatedList(activeProjects, page, projectsCount);
+                result.Items.OrderByDescending(r => r.PriorityRatio).ToList();
+            }
+            else
+            {
+                _logger.LogInformation("GetActiveUserProjectsAsync user was not found. ", userName);
             }
 
-            return result.OrderByDescending(r => r.PriorityRatio).ToList();
+            return result;
         }
 
         public async Task<UserProjectDetailsResponse> CreateProjectAsync(CreateUserProjectRequest projectToCreate,

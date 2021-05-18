@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Model.Page
 {
-    public class PaginatedList<T> : List<T>
+    public class PaginatedList<T> 
     {
+        public IList<T> Items { get; set; }
         public int PageIndex { get; set; }
         public int PageCount { get; set; }
         public bool HasPreviousPage 

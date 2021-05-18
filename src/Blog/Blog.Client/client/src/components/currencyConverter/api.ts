@@ -6,7 +6,7 @@ import { IResponseCurrencyRate, ICurrencyRateList, ICurrency, ICurrencyRate } fr
 import { nbrbRatesAddress } from "../../shared/apiAddresses";
 //"https://www.nbrb.by/api/exrates/rates?periodicity=0"
 
-export async function GetCurrencyRates(
+export async function getCurrencyRates(
     requiredCurrencies: ICurrency[]
 ): Promise<ICurrencyRateList> {
     let result: ICurrencyRateList = {rates: [], dateUpdated: "", error: false};

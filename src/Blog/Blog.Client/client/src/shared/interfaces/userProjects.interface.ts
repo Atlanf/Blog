@@ -1,3 +1,3 @@
-export interface UserProjectPreview {
-    
+export interface IUserProjectPreview {
+
 }
