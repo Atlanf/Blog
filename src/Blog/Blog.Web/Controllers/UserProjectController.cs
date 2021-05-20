@@ -34,9 +34,9 @@ namespace Blog.Web.Controllers
         }
 
         [HttpGet("{userName}/all")]
-        public async Task<IActionResult> GetUserProjectsAsync(string userName, [FromQuery]PageInfo page)
+        public async Task<IActionResult> GetUserProjectsAsync(string userName, [FromQuery]PageInfo pageInfo)
         {
-            var result = await _userProjectService.GetActiveUserProjectsAsync(userName, page);
+            var result = await _userProjectService.GetActiveUserProjectsAsync(userName, pageInfo);
 
             return Ok(result);
         }

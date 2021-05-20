@@ -1,5 +1,5 @@
 import React from "react";
-import { ICurrencyRateList, ICurrency, IConvertedCurrency } from "../../shared/interfaces/currencyConverter.interface";
+import { ICurrencyRateList, ICurrency, IConvertedCurrency } from "../../shared/interfaces/";
 import { convertCurrencies, loadCurrencyRates, inputIsValid } from "./utils";
 
 interface IProps {

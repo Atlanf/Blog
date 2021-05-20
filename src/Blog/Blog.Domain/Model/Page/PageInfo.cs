@@ -11,11 +11,9 @@ namespace Blog.Domain.Model.Page
     {
         [FromQuery(Name = "page")]
         public int Page { get; set; } = 1;
-        [FromQuery(Name = "size")]
+        [FromQuery(Name = "pageSize")]
         public int PageSize { get; set; } = 5;
         [FromQuery(Name = "search")]
         public string SearchRequest { get; set; } = "";
-        [FromQuery(Name = "filter")]
-        public string Filter { get; set; } = "";
     }
 }

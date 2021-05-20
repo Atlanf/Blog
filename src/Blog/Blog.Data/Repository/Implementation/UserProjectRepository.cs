@@ -58,6 +58,7 @@ namespace Blog.Data.Repository.Implementation
                 .Where(proj => proj.UserId == userId && proj.IsActive && !proj.IsHidden && !proj.IsDeleted && proj.Title.Contains(page.SearchRequest))
                 .Skip((page.Page - 1) * page.PageSize)
                 .Take(page.PageSize)
+                .Where(proj => proj.Title.Contains(page.SearchRequest))
                 .Include(proj => proj.UserTasks).ThenInclude(task => task.Priority)
                 .ToListAsync();
         }

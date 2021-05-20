@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 
 /* Add sending errors to the server */ 
-export default function ParseAxiosError(
+export default function parseAxiosError(
     error: AxiosError,
     method: string,
     address: string

@@ -1,8 +1,8 @@
 import axios, { AxiosError } from "axios";
 import { insertByn, parseDate } from "./utils";
-import ParseAxiosError from "../../actions/errorParser";
+import parseAxiosError from "../../utils/errorParser";
 
-import { IResponseCurrencyRate, ICurrencyRateList, ICurrency, ICurrencyRate } from "../../shared/interfaces/currencyConverter.interface";
+import { IResponseCurrencyRate, ICurrencyRateList, ICurrency, ICurrencyRate } from "../../shared/interfaces/";
 import { nbrbRatesAddress } from "../../shared/apiAddresses";
 //"https://www.nbrb.by/api/exrates/rates?periodicity=0"
 
@@ -29,7 +29,7 @@ export async function getCurrencyRates(
                 result.dateUpdated = parseDate(new Date());
             })
             .catch((error: AxiosError) => {
-                ParseAxiosError(error, "GET", nbrbRatesAddress);
+                parseAxiosError(error, "GET", nbrbRatesAddress);
                 result.error = true;
             })
     
