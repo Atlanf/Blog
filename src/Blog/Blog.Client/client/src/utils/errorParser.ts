@@ -8,9 +8,11 @@ export default function parseAxiosError(
 ) {
     if (error.response) {
         console.log("Error: request was made and response was recieved.");
+        console.log(error.message);
     }
     else if (error.request) {
         console.log("Error: request was made but no response was recieved.")
+        console.log(error.message);
     }
     else {
         console.log("Error: ", error.message);

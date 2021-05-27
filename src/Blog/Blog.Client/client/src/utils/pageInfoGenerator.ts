@@ -4,7 +4,7 @@ import { adjustPage } from "./pageAdjuster";
 
 import { defaultPageInfoValues } from "../shared/defaultPageInfoValues";
 
-export function generatePageInfoRequest(baseRequest: string, pageInfo: IPageInfo) {
+export function addPageInfoToRequest(baseRequest: string, pageInfo: IPageInfo): string {
     pageInfo = adjustPage(pageInfo);
     let key: keyof typeof pageInfo;
     let sign: string;
@@ -20,4 +20,6 @@ export function generatePageInfoRequest(baseRequest: string, pageInfo: IPageInfo
             baseRequest += sign + key.toString() + "=" + pageInfo[key];
         }
     }
+
+    return baseRequest;
 }

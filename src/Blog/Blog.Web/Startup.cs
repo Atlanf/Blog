@@ -19,6 +19,8 @@ namespace Blog.Web
 {
     public class Startup
     {
+        private readonly string _policyName = "ReactClient";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,6 +31,16 @@ namespace Blog.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    name: _policyName,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000");
+                    });
+            });
+
             services.AddLogging();
             services.AddControllers();
 
@@ -63,6 +75,8 @@ namespace Blog.Web
             app.UseSerilogRequestLogging();
 
             app.UseRouting();
+
+            app.UseCors(_policyName);
 
             app.UseAuthentication();
             app.UseAuthorization();
