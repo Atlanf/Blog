@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Model.User.Responses
 {
-    public class SigninResponse
+    public class SigninResponse: BaseResponse
     {
     }
 }

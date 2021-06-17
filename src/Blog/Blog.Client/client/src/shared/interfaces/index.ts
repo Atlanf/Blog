@@ -7,3 +7,5 @@ export * from "./userProjects.interface";
 export * from "./userTasksPreview.interface";
 
 export * from "./paginatedList.interface";
+
+export * from "./baseResponse.interface";

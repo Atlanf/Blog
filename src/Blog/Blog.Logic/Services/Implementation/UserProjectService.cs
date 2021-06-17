@@ -56,6 +56,8 @@ namespace Blog.Logic.Services.Implementation
             }
             else
             {
+                result.IsSuccess = false;
+                result.Errors.Add("You can not view these projects.");
                 _logger.LogInformation("GetActiveUserProjectsAsync user was not found. ", userName);
             }
 
@@ -66,28 +68,33 @@ namespace Blog.Logic.Services.Implementation
             CreateUserProjectRequest projectToCreate,
             string userName)
         {
+            var result = new UserProjectDetailsResponse();
             var user = await _userRepository.GetUserIdByNameAsync(userName);
             if (!(await _userProjectRepository.IsUserProjectExistsAsync(projectToCreate.Title, user)))
             {
                 var projectToAdd = _mapper.Map<UserProject>(projectToCreate);
                 projectToAdd.User = await _userRepository.GetUserByNameAsync(userName);
 
-                var result = await _userProjectRepository.AddUserProjectAsync(projectToAdd);
+                var operationResult = await _userProjectRepository.AddUserProjectAsync(projectToAdd);
 
-                if (result != null)
+                if (operationResult != null)
                 {
-                    return _mapper.Map<UserProjectDetailsResponse>(result);
+                    return _mapper.Map<UserProjectDetailsResponse>(operationResult);
                 }
                 else
                 {
+                    result.IsSuccess = false;
+                    result.Errors.Add("Something went wrong on creating new project.");
                     _logger.LogWarning("CreateProjectAsync result is NULL. ", projectToCreate, projectToAdd.User);
-                    return null;
+                    return result;
                 }
             }
             else
             {
+                result.IsSuccess = false;
+                result.Errors.Add("Project with such name already exists or active. ");
                 _logger.LogInformation("CreateProjectAsync project with these credentials for this user already exists. Project: {@ProjectToCreate}; User: {@UserName}", projectToCreate, userName);
-                return null;
+                return result;
             }
         }
     }

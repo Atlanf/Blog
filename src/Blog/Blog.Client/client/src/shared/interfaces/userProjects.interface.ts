@@ -1,4 +1,4 @@
-import { IPaginatedList } from "./index";
+import { IPaginatedList, IBaseResponse } from "./index";
 
 export interface IUserProjectPreview {
     id: number,
@@ -11,5 +11,19 @@ export interface IUserProjectPreview {
 
 export interface IProjectPreviews {
     userProjectPreviews: IPaginatedList<IUserProjectPreview>,
-    error: boolean
+    error: boolean,
+    isLoading: boolean
+}
+
+export interface ICreateProjectRequest {
+    title: string,
+    description: string
+}
+
+export interface ICreateProjectResponse extends IBaseResponse {
+
+}
+
+export interface IUserProjectDetails {
+    
 }

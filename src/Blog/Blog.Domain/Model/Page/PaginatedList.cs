@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Model.Page
 {
-    public class PaginatedList<T> 
+    public class PaginatedList<T>: BaseResponse
     {
         public IList<T> Items { get; set; }
         public int PageIndex { get; set; }

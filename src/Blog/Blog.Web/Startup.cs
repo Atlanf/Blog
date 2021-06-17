@@ -19,8 +19,6 @@ namespace Blog.Web
 {
     public class Startup
     {
-        private readonly string _policyName = "ReactClient";
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,10 +32,10 @@ namespace Blog.Web
             services.AddCors(options =>
             {
                 options.AddPolicy(
-                    name: _policyName,
+                    name: Configuration.GetValue<string>("CorsPolicyName"),
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000");
+                        builder.WithOrigins(Configuration.GetValue<string>("CorsClientAddress"));
                     });
             });
 
@@ -76,7 +74,7 @@ namespace Blog.Web
 
             app.UseRouting();
 
-            app.UseCors(_policyName);
+            app.UseCors(Configuration.GetValue<string>("CorsPolicyName"));
 
             app.UseAuthentication();
             app.UseAuthorization();

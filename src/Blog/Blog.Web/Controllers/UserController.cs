@@ -26,7 +26,7 @@ namespace Blog.Web.Controllers
         {
             var result = await _userService.SignupUser(request);
 
-            if (result.Successful)
+            if (result.IsSuccess)
             {
                 return Ok(result);
             }

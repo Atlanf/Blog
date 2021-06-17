@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Model.User.Responses
 {
-    public class SignupResponse
+    public class SignupResponse: BaseResponse
     {
-        public bool Successful { get; set; }
-        public IList<string> Errors { get; set; }
+
     }
 }

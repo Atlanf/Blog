@@ -1,11 +1,12 @@
 import React from 'react';
-import { CurrencyConverter } from './components';
+import { CreateUserProject, CurrencyConverter } from './components';
 import { UserProjectsPage } from './pages/userProjectsPage';
 
 function App() {
     return (
         <div>
-            <UserProjectsPage />
+            {/* <UserProjectsPage /> */}
+            <CreateUserProject />
             <CurrencyConverter />
         </div>
     );

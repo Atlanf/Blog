@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Model.UserProject.Responses
 {
-    public class UserProjectDetailsResponse
+    public class UserProjectDetailsResponse: BaseResponse
     {
         public int Id { get; set; }
         public string Title { get; set; }

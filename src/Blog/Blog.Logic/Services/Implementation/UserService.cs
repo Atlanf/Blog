@@ -31,13 +31,13 @@ namespace Blog.Logic.Services.Implementation
 
             if (result.Succeeded)
             {
-                return new SignupResponse() { Successful = true };
+                return new SignupResponse() { IsSuccess = true };
             }
             else
             {
                 return new SignupResponse()
                 {
-                    Successful = false,
+                    IsSuccess = false,
                     Errors = result.Errors.Select(x => x.Description).ToList()
                 };
             }

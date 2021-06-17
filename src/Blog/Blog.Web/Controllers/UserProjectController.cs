@@ -26,11 +26,14 @@ namespace Blog.Web.Controllers
         public async Task<IActionResult> CreateNewProjectAsync(CreateUserProjectRequest project)
         {
             var result = await _userProjectService.CreateProjectAsync(project, "admin");
-            if (result == null)
+            
+            if (result.IsSuccess)
             {
-                return BadRequest();
+                // Change to Redirect to Created Project Details
+                return Ok(result);
             }
-            return Ok(result);
+
+            return BadRequest(result);
         }
 
         [HttpGet("{userName}/all")]
@@ -38,7 +41,12 @@ namespace Blog.Web.Controllers
         {
             var result = await _userProjectService.GetActiveUserProjectsAsync(userName, pageInfo);
 
-            return Ok(result);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
         }
     }
 }

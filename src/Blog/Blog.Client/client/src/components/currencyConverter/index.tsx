@@ -80,6 +80,7 @@ export default class CurrencyConverter extends React.Component<IProps, IState>{
             <div>
                 <div>
                     {inputs}
+                    <p>Last update: {this.state.currencyRates.dateUpdated}</p>
                 </div>
                 <div>
                     {errorDescription}

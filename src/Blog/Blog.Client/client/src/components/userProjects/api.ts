@@ -1,4 +1,4 @@
-import axios, {AxiosError} from "axios";
+import axios, { AxiosError } from "axios";
 
 import { addPageInfoToRequest } from "../../utils/pageInfoGenerator";
 import parseAxiosError from "../../utils/errorParser";
@@ -19,11 +19,11 @@ export async function getUserProjects(
 
     await axios.get<IPaginatedList<IUserProjectPreview>>(requestString)
         .then(response => {
-            result = { userProjectPreviews: response.data, error: false };
+            result = { userProjectPreviews: response.data, error: false, isLoading: false };
         })
         .catch((error: AxiosError) => {
             parseAxiosError(error, "GET", requestString);
-            result = {userProjectPreviews: {} as IPaginatedList<IUserProjectPreview>, error: true };
+            result = {userProjectPreviews: {} as IPaginatedList<IUserProjectPreview>, error: true, isLoading: false };
         });
 
     return result;
