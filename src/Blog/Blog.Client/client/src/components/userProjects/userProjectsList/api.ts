@@ -1,10 +1,10 @@
 import axios, { AxiosError } from "axios";
 
-import { addPageInfoToRequest } from "../../utils/pageInfoGenerator";
-import parseAxiosError from "../../utils/errorParser";
+import { addPageInfoToRequest } from "../../../utils/pageInfoGenerator";
+import parseAxiosError from "../../../utils/errorParser";
 
-import { serverAddress } from "../../shared/apiAddresses";
-import { IUserProjectPreview, IPageInfo, IProjectPreviews, IPaginatedList } from "../../shared/interfaces/";
+import { serverAddress } from "../../../shared/apiAddresses";
+import { IUserProjectPreview, IPageInfo, IProjectPreviews, IPaginatedList } from "../../../shared/interfaces/";
 
 export async function getUserProjects(
     userName: string,

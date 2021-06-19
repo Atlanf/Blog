@@ -35,7 +35,9 @@ namespace Blog.Web
                     name: Configuration.GetValue<string>("CorsPolicyName"),
                     builder =>
                     {
-                        builder.WithOrigins(Configuration.GetValue<string>("CorsClientAddress"));
+                        builder.WithOrigins(Configuration.GetValue<string>("CorsClientAddress"))
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
                     });
             });
 

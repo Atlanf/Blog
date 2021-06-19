@@ -5,7 +5,7 @@ import { UserProjectsPage } from './pages/userProjectsPage';
 function App() {
     return (
         <div>
-            {/* <UserProjectsPage /> */}
+            <UserProjectsPage />
             <CreateUserProject />
             <CurrencyConverter />
         </div>

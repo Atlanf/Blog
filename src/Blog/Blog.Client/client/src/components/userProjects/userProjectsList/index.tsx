@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { getUserProjects } from "./api";
 import { ProjectPreview } from "./projectPreview";
 
-import { IProjectPreviews, IPaginatedList, IUserProjectPreview } from "../../shared/interfaces";
+import { IProjectPreviews, IPaginatedList, IUserProjectPreview } from "../../../shared/interfaces";
 
-import { LoadingSpinner } from "../loadingSpinner";
+import { LoadingSpinner } from "../../loadingSpinner";
 
 const userName = "admin";
 

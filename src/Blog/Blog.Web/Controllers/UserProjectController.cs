@@ -1,5 +1,6 @@
 ﻿using Blog.Domain.Model.Page;
 using Blog.Domain.Model.UserProject.Requests;
+using Blog.Domain.Model.UserProject.Responses;
 using Blog.Logic.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -22,9 +23,10 @@ namespace Blog.Web.Controllers
             _logger = logger;
         }
 
-        [HttpPost("/create")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateNewProjectAsync(CreateUserProjectRequest project)
         {
+            // Change "admin" to actual user 
             var result = await _userProjectService.CreateProjectAsync(project, "admin");
             
             if (result.IsSuccess)
@@ -33,7 +35,7 @@ namespace Blog.Web.Controllers
                 return Ok(result);
             }
 
-            return BadRequest(result);
+            return Ok(result);
         }
 
         [HttpGet("{userName}/all")]

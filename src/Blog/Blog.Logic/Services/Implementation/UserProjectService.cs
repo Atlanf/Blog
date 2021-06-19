@@ -64,11 +64,11 @@ namespace Blog.Logic.Services.Implementation
             return result;
         }
 
-        public async Task<UserProjectDetailsResponse> CreateProjectAsync(
+        public async Task<CreateUserProjectResponse> CreateProjectAsync(
             CreateUserProjectRequest projectToCreate,
             string userName)
         {
-            var result = new UserProjectDetailsResponse();
+            var result = new CreateUserProjectResponse();
             var user = await _userRepository.GetUserIdByNameAsync(userName);
             if (!(await _userProjectRepository.IsUserProjectExistsAsync(projectToCreate.Title, user)))
             {
@@ -79,7 +79,7 @@ namespace Blog.Logic.Services.Implementation
 
                 if (operationResult != null)
                 {
-                    return _mapper.Map<UserProjectDetailsResponse>(operationResult);
+                    return _mapper.Map<CreateUserProjectResponse>(operationResult);
                 }
                 else
                 {

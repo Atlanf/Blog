@@ -21,7 +21,10 @@ export interface ICreateProjectRequest {
 }
 
 export interface ICreateProjectResponse extends IBaseResponse {
-
+    id: number,
+    title: string,
+    description: string,
+    dateCreated: Date
 }
 
 export interface IUserProjectDetails {

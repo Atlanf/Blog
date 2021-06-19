@@ -44,6 +44,7 @@ namespace Blog.Logic.Profiles
 
             CreateMap<CreateUserProjectRequest, UserProject>();
             CreateMap<UserProject, UserProjectDetailsResponse>();
+            CreateMap<UserProject, CreateUserProjectResponse>();
         }
     }
 }

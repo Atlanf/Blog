@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IUserProjectPreview } from "../../../shared/interfaces";
+import { IUserProjectPreview } from "../../../../shared/interfaces";
 
 interface IProjectPreviewProps {
     obj: IUserProjectPreview
