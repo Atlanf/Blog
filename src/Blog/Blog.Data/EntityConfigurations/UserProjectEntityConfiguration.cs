@@ -23,6 +23,8 @@ namespace Blog.Data.EntityConfigurations
                 .HasDefaultValueSql("getdate()");
             builder.Property(b => b.Title)
                 .HasMaxLength(50);
+            builder.Property(b => b.ShortName)
+                .HasMaxLength(25);
         }
     }
 }

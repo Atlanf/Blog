@@ -39,8 +39,7 @@ export const UserProjects: React.FC = () => {
             <div>
                 {projects.userProjectPreviews.items.map((proj) => {
                     return (
-                        <ProjectPreview obj={proj}>
-                        </ProjectPreview>
+                        <ProjectPreview obj={proj} />
                     )
                 })}
             </div>

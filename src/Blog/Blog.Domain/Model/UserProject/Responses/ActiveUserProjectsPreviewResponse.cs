@@ -10,6 +10,7 @@ namespace Blog.Domain.Model.UserProject.Responses
     {
         public int Id { get; set; }
         public string ProjectTitle { get; set; }
+        public string ShortName { get; set; }
         public double PriorityRatio { get; set; }
         public int HighPriorityTaskCount { get; set; }
         public int UnfinishedTaskCount { get; set; }

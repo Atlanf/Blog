@@ -63,7 +63,7 @@ namespace Blog.Data.Repository.Implementation
                 .ToListAsync();
         }
 
-        public async Task<bool> IsUserProjectExistsAsync(string title, string userId)
+        public async Task<bool> IsUserProjectExistsAsync(string shortName, string userId)
         {
             return await _context.UserProjects
                 .AnyAsync(proj => proj.Title.ToLower() == title.ToLower() && proj.UserId == userId && !proj.IsDeleted);

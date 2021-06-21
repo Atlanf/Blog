@@ -25,6 +25,7 @@ namespace Blog.Logic.Profiles
                         .Where(t => t.IsComplete == false)
                         .Count())
                  )
+                .ForMember(proj => proj.ShortName, opt => opt.MapFrom(x => x.ShortName))
                 .ForMember(
                     proj => proj.LastFinishedTask,
                     opt => opt.MapFrom(t => t.UserTasks
