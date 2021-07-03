@@ -41,40 +41,70 @@ namespace Blog.Logic.Services.Implementation
 
         public async Task<List<UserTaskResponse>> CreateUserTaskAsync(CreateUserTaskRequest userTask)
         {
-            var taskToAdd = _mapper.Map<UserTask>(userTask);
-            taskToAdd.Project = await _userProjectRepository.GetUserProjectByIdAsync(userTask.ProjectId);
+            return new List<UserTaskResponse>();
+            //var taskToAdd = _mapper.Map<UserTask>(userTask);
+            //taskToAdd.Project = await _userProjectRepository.GetUserProjectByIdAsync(userTask.ProjectId);
 
-            var operationResult = await _userTaskRepository.AddUserTaskAsync(taskToAdd);
+            //var operationResult = await _userTaskRepository.AddUserTaskAsync(taskToAdd);
 
-            if (operationResult != null)
-            {
-                return _mapper.Map<List<UserTaskResponse>>(await GetProjectTasksAsync(userTask.ProjectId));
-            }
-            else
-            {
-                _logger.LogWarning("CreateUserTaskAsync: Task was not added.", userTask);
-                return null;
-            }
+            //if (operationResult != null)
+            //{
+            //    return _mapper.Map<List<UserTaskResponse>>(await GetProjectTasksAsync(userTask.ProjectId));
+            //}
+            //else
+            //{
+            //    _logger.LogWarning("CreateUserTaskAsync: Task was not added.", userTask);
+            //    return null;
+            //}
         }
 
-        public async Task<List<UserTaskResponse>> GetActiveProjectTasksAsync(int projectId, string userName)
+        public async Task<List<UserTaskResponse>> GetActiveProjectTasksAsync(string projectShortName, string userName)
         {
             var user = await _userRepository.GetUserByNameAsync(userName);
-            var isOwner = await _userProjectRepository.UserIsOwnerAsync(projectId, user.Id);
+            var project = await _userProjectRepository.GetUserProjectByShortNameAsync(projectShortName, user.Id);
+            var isOwner = await _userProjectRepository.UserIsOwnerAsync(project.Id, user.Id);
 
             if (isOwner)
             {
-                return _mapper.Map<List<UserTaskResponse>>(await GetProjectTasksAsync(projectId));
+                if (!project.IsActive)
+                {
+                    _logger.LogInformation("GetActiveProjectTasksAsync User {@userName} tried to get access to an inactive project {@projectName}.", userName, projectShortName);
+                    return new List<UserTaskResponse>()
+                    {
+                        new UserTaskResponse()
+                        {
+                            IsSuccess = true,
+                            Errors = new List<string>()
+                            {
+                                "Project is inactive."
+                            }
+                        }
+                    };
+                }
+
+                return _mapper.Map<List<UserTaskResponse>>(await GetProjectTasksAsync(projectShortName));
             }
             else
             {
-                return null;
+                _logger.LogInformation("GetActiveProjectTasksAsync User {@userName} tried to get access to project {@projectName} They don't own the project.", userName, projectShortName);
+                
+                return new List<UserTaskResponse>()
+                {
+                    new UserTaskResponse()
+                    {
+                        IsSuccess = false,
+                        Errors = new List<string>()
+                        {
+                            "You don't own this project."
+                        }
+                    }
+                };
             }
         }
 
-        private async Task<List<UserTask>> GetProjectTasksAsync(int projectId)
+        private async Task<List<UserTask>> GetProjectTasksAsync(string projectShortName)
         {
-            var result = await _userTaskRepository.GetAllProjectTasksAsync(projectId);
+            var result = await _userTaskRepository.GetAllProjectTasksAsync(projectShortName);
 
             if (result != null)
             {

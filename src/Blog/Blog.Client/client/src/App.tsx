@@ -1,13 +1,21 @@
 import React from 'react';
-import { CreateUserProject, CurrencyConverter } from './components';
-import { UserProjectsPage } from './pages/userProjectsPage';
+import Switch from 'react-bootstrap/esm/Switch';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { UserTasksPage, HomePage, UserProjectsPage } from './pages';
+
+import { NavBar } from "./components/navBar";
 
 function App() {
     return (
         <div>
-            <UserProjectsPage />
-            <CreateUserProject />
-            <CurrencyConverter />
+            <NavBar />
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Route path="/projects/details/:shortName" component={UserTasksPage} />
+                    <Route path="/projects" component={UserProjectsPage} />
+                </Switch>
+            </BrowserRouter>
         </div>
     );
 }

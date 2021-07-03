@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { IUserProjectPreview } from "../../../../shared/interfaces";
 
@@ -9,7 +10,7 @@ interface IProjectPreviewProps {
 export const ProjectPreview: React.FC<IProjectPreviewProps> = (props) => {
     return (
         <div>
-            {props.obj.projectTitle}
+            <Link to={`/projects/details/${props.obj.shortName}`}>{props.obj.projectTitle}</Link>
         </div>
     )
 }

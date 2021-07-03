@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Model.UserTask.Responses
 {
-    public class UserTaskResponse
+    public class UserTaskResponse: BaseResponse
     {
         public int Id { get; set; }
         public string Title { get; set; }

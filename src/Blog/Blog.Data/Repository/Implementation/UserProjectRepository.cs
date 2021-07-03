@@ -66,7 +66,7 @@ namespace Blog.Data.Repository.Implementation
         public async Task<bool> IsUserProjectExistsAsync(string shortName, string userId)
         {
             return await _context.UserProjects
-                .AnyAsync(proj => proj.Title.ToLower() == title.ToLower() && proj.UserId == userId && !proj.IsDeleted);
+                .AnyAsync(proj => proj.ShortName.ToLower() == shortName.ToLower() && proj.UserId == userId && !proj.IsDeleted);
         }
 
         public async Task<UserProject> GetUserProjectByIdAsync(int projectId)
@@ -85,6 +85,13 @@ namespace Blog.Data.Repository.Implementation
         {
             return await _context.UserProjects
                 .CountAsync(p => p.UserId == userId && p.IsActive && !p.IsDeleted);
+        }
+
+        public async Task<UserProject> GetUserProjectByShortNameAsync(string projectShortName, string userId)
+        {
+            return await _context.UserProjects
+                .Where(p => p.ShortName == projectShortName && p.UserId == userId && !p.IsDeleted)
+                .FirstAsync();
         }
     }
 }

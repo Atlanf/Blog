@@ -18,5 +18,6 @@ namespace Blog.Data.Repository.Interface
         Task<bool> IsUserProjectExistsAsync(string title, string userId);
         Task<bool> UserIsOwnerAsync(int projectId, string userId);
         Task<int> GetActiveUserProjectsCountAsync(string userId);
+        Task<UserProject> GetUserProjectByShortNameAsync(string projectShortName, string userId);
     }
 }

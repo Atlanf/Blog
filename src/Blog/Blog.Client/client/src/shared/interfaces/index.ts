@@ -9,3 +9,5 @@ export * from "./userTasksPreview.interface";
 export * from "./paginatedList.interface";
 
 export * from "./baseResponse.interface";
+
+export * from "./routerParams.interface";

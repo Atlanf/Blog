@@ -50,10 +50,10 @@ namespace Blog.Data.Repository.Implementation
             return await _context.UserTasks.FindAsync(taskToDelete);
         }
 
-        public async Task<List<UserTask>> GetAllProjectTasksAsync(int projectId)
+        public async Task<List<UserTask>> GetAllProjectTasksAsync(string projectShortName)
         {
             return await _context.UserTasks
-                .Where(t => t.ProjectId == projectId && !t.IsComplete)
+                .Where(t => t.Project.ShortName == projectShortName && !t.IsComplete && !t.IsDeleted)
                 .OrderByDescending(t => t.Priority.Id)
                 .OrderBy(t => t.Position).ToListAsync();
         }

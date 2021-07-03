@@ -21,15 +21,15 @@ namespace Blog.Web.Controllers
         }
 
         //[Authorize]
-        [HttpGet("{projectId}")]
-        public async Task<ActionResult<List<UserTaskResponse>>> GetUserTasks(int projectId)
+        [HttpGet("{projectShortName}")]
+        public async Task<ActionResult<List<UserTaskResponse>>> GetUserTasks(string projectShortName)
         {
             /* Temp value */
             string userName = "admin";
 
-            var result = await _userTaskService.GetActiveProjectTasksAsync(projectId, userName);
+            var result = await _userTaskService.GetActiveProjectTasksAsync(projectShortName, userName);
 
-            if (result != null)
+            if (result.First().IsSuccess)
             {
                 return Ok(result);
             }
